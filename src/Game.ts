@@ -43,7 +43,6 @@ export class Game {
         var split_level = level.split("\n");
         split_level.forEach( (line, i)  => {
             for(var j=0; j<=19; j++) {
-                // var cell = getCellByPostion( new Vector(j,i) ,this.field)
                 var cell = new Cell(j,i)
                 if (line.charAt(j) == "_"){
                     this.field.addObject(GameObjectFactory.createEmptyCell(cell, this.field));

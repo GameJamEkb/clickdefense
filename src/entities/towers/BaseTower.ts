@@ -7,13 +7,6 @@ import {IGameObject} from "../interfaces/IGameObject";
 import {ICollider} from "../interfaces/ICollider";
 
 export class BaseTower implements IGameObject, ITower, IReloader {
-    // static BaseHp = 100;
-    // static BaseReloadTime = 0.3;
-
-    WeaponRadius = 50;
-    AttackPower = 4;
-    // timeout: number;
-    // reloadTime: number;
 
     constructor(public collider: ICollider,
                 public field: Field,
@@ -33,9 +26,8 @@ export class BaseTower implements IGameObject, ITower, IReloader {
     }
 
     attackEnemy(attackPower: number): void {
-        var Reload = this.isRealoded()
-        if (Reload) {
-            var enemies = this.field.getEnemiesFromRadius(this.position, this.WeaponRadius)
+        if (this.isRealoded()) {
+            var enemies = this.field.getEnemiesFromRadius(this.position, this.weaponRadius)
             if (enemies.length) {
                 enemies[0].gotHit(attackPower)
                 this.startReload()
@@ -44,12 +36,12 @@ export class BaseTower implements IGameObject, ITower, IReloader {
     }
 
     onClick(): void {
-        this.attackEnemy(this.AttackPower)
+        this.attackEnemy(this.attackPower)
     }
 
     update(elapsed: number): void {
         this.timeout -= elapsed;
-        this.attackEnemy(this.AttackPower)
+        this.attackEnemy(this.attackPower)
     }
 
     attack(): boolean {

@@ -57,7 +57,7 @@ export class GameObjectFactory {
             100,
             100,
             1,
-            4,
+            25,
             50,
             1,
             true
