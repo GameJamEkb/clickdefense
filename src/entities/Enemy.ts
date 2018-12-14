@@ -22,7 +22,9 @@ export class Enemy implements IGameObject, IMover {
                 public passability: boolean,
                 public position: Vector,
                 public hp: number,
-                public sprite: HTMLImageElement
+                public maxHp: number,
+                public sprite: HTMLImageElement,
+                public reloadBar: boolean
     ) {
         this.animation = new Animation(
             368 * 2, 204 * 2, 32, 0, 0.2, 3
@@ -55,7 +57,7 @@ export class Enemy implements IGameObject, IMover {
     }
 
     gotHit(powerHit: number): void {
-        this.hp = -powerHit
+        this.hp -= powerHit
     }
 
     render(ctx: CanvasRenderingContext2D): void {

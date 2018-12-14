@@ -4,6 +4,9 @@ import {Enemy} from "./entities/Enemy";
 import {getCellByPostion} from "./utils/positions";
 import {Cell} from "./entities/base/Cell";
 import {GameObjectFactory} from "./entities/factories/GameObjectFactory";
+import {HpBar} from "./entities/ui/HpBar";
+import {ReloadBar} from "./entities/ui/ReloadBar";
+import {IReloader} from "./entities/interfaces/IReloader";
 
 export class Field {
     objects: Array<Array<IGameObject>>;
@@ -50,6 +53,13 @@ export class Field {
         );
 
         this.enemies.forEach(enemy => enemy.render(ctx));
+        this.enemies.forEach(enemy => HpBar.render(ctx, enemy, this));
+
+        this.objects.forEach(line =>
+            line
+                .filter(x => x.reloadBar)
+                .forEach(x => ReloadBar.render(ctx, x as unknown as IReloader, this))
+        );
     }
 
     update(elapsed: number): void {

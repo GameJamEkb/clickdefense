@@ -6,15 +6,15 @@ import {ICollider} from "./interfaces/ICollider";
 
 export class Rock implements IGameObject {
     private static BaseHp = 100;
-    hp: number;
 
     constructor(public collider: ICollider,
                 public field: Field,
                 public passability: boolean,
-                public position: Vector)
-    {
-        this.hp = Rock.BaseHp;
-    }
+                public position: Vector,
+                public hp: number,
+                public maxHp: number,
+                public reloadBar: boolean)
+    { }
 
     onClick(): void {
     }

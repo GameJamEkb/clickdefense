@@ -5,8 +5,8 @@ import {drawCircle} from "../../utils/render";
 import {ICollider} from "./ICollider";
 
 export interface ITower {
-    WeaponRadius: number;
-    AttackPower: number;
+    weaponRadius: number;
+    attackPower: number;
 
     attack(): boolean
 }
