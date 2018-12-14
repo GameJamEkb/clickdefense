@@ -1,7 +1,7 @@
-import {Cell} from "./entities/base/Cell";
 import {GameObject} from "./entities/base/GameObject";
+import {Cell} from "./entities/base/Cell";
 import {Vector} from "./entities/base/Vector";
-import has = Reflect.has;
+import {Field} from "./Field";
 
 export function pifagor(x: number, y: number) {
     return Math.sqrt(x * x + y * y);
@@ -78,21 +78,10 @@ export function bfs(nodes: Array<Array<GameObject>>, startNode: Cell, destNode: 
     return [];
 }
 
-// BFS(start_node, goal_node) {
-//     for(all nodes i) visited[i] = false; // изначально список посещённых узлов пуст
-//     queue.push(start_node);              // начиная с узла-источника
-//     visited[start_node] = true;
-//     while(! queue.empty() ) {            // пока очередь не пуста
-//         node = queue.pop();                 // извлечь первый элемент в очереди
-//         if(node == goal_node) {
-//             return true;                       // проверить, не является ли текущий узел целевым
-//         }
-//         foreach(child in expand(node)) {    // все преемники текущего узла, ...
-//             if(visited[child] == false) {      // ... которые ещё не были посещены ...
-//                 queue.push(child);                // ... добавить в конец очереди...
-//                 visited[child] = true;            // ... и пометить как посещённые
-//             }
-//         }
-//     }
-//     return false;                        // Целевой узел недостижим
-// }
+export function cellByPostion(v: Vector, field: Field): Cell {
+    return new Vector(
+        Math.floor(v.x / field.cellSize),
+        Math.floor(v.y / field.cellSize)
+    )
+}
+
