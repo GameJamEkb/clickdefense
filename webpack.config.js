@@ -10,7 +10,7 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
-                exclude: /node_modules/
+                exclude: [/node_modules/, /tests/]
             },
             {
                 test: /\.css$/,
@@ -31,5 +31,15 @@ module.exports = {
             path.join(__dirname, "node_modules")
         ])
     ],
+    devServer: {
+
+        watchOptions: {
+            ignored: [
+                path.resolve(__dirname, 'dist'),
+                path.resolve(__dirname, 'tests'),
+                path.resolve(__dirname, 'node_modules')
+            ]
+        }
+    },
     mode: "development"
 };

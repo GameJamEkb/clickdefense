@@ -3,15 +3,29 @@ import {Vector} from "../src/entities/base/Vector";
 import {bfs} from "../src/utils";
 import {Cell} from "../src/entities/base/Cell";
 import expect from "expect";
+import {Field} from "../src/Field";
+import {Collider} from "../src/entities/base/Collider";
+import {Rectangle} from "../src/entities/base/Rectangle";
+
+class TestNode extends GameObject {
+    constructor(b: boolean) {
+        super(new Vector(0, 0), 0, b, new Field(0, 0, 0), new Rectangle(1, 1));
+    }
+
+    onClick(): void {
+    }
+
+    render(ctx: CanvasRenderingContext2D): void {
+    }
+
+    update(elapsed: number): void {
+    }
+}
+
 
 describe('Utils', () => {
     describe('bfs', () => {
         it('must find the path', () => {
-            class TestNode extends GameObject {
-                constructor(b: boolean) {
-                    super(new Vector(0, 0), 0, b);
-                }
-            }
 
             const nodes = Array.from({length: 4})
                 .map(() => Array.from({length: 4})
@@ -27,11 +41,6 @@ describe('Utils', () => {
         });
 
         it('must not find the path', () => {
-            class TestNode extends GameObject {
-                constructor(b: boolean) {
-                    super(new Vector(0, 0), 0, b);
-                }
-            }
 
             const nodes = Array.from({length: 4})
                 .map(() => Array.from({length: 4})

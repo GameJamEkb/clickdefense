@@ -1,21 +1,17 @@
-import {Field} from "../Field";
 import {GameObject} from "./base/GameObject";
 import {Vector} from "./base/Vector";
 import {IMover} from "./interfaces/IMover";
-import {bfs} from "../utils";
+import {bfs, cellByPostion} from "../utils";
+import {Cell} from "./base/Cell";
 
 export class Enemy extends GameObject implements IMover {
-    destination: Vector;
+    nextPoint: Vector = this.position;
+    destination: Cell = this.position;
 
     private point?: Vector;
 
-    constructor(
-        public position: Vector,
-        public hp: Number,
-        public field: Field
-    ) {
-        super(position, hp, true);
-        this.destination = this.field.goldPosition;
+    get cell(): Cell {
+        return cellByPostion(this.position, this.field);
     }
 
     findNextPoint(): Vector {
@@ -28,9 +24,6 @@ export class Enemy extends GameObject implements IMover {
         return this.cell;
     }
 
-    render() {
-
-    }
 
     onClick(): void {
     }
@@ -39,9 +32,13 @@ export class Enemy extends GameObject implements IMover {
         this.hp =- powerHit
     }
 
-    render(obj: GameObject, ctx: CanvasRenderingContext2D): void {
+    render(ctx: CanvasRenderingContext2D): void {
     }
 
     update(elapsed: number): void {
+        this.destination = this.field.goldPosition;
+        this.nextPoint = this.findNextPoint();
+
+
     }
 }
