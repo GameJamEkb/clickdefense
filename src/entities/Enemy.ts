@@ -23,7 +23,8 @@ export class Enemy implements IGameObject, IMover {
                 public position: Vector,
                 public hp: number,
                 public maxHp: number,
-                public sprite: HTMLImageElement
+                public sprite: HTMLImageElement,
+                public reloadBar: boolean
     ) {
         this.animation = new Animation(
             368 * 2, 204 * 2, 32, 0, 0.2, 3

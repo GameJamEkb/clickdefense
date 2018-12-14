@@ -10,7 +10,8 @@ export class EmptyCell implements IGameObject {
                 public passability: boolean,
                 public position: Vector,
                 public hp: number,
-                public maxHp: number)
+                public maxHp: number,
+                public reloadBar: boolean)
     { }
 
     onClick(): void {

@@ -19,7 +19,8 @@ export class GameObjectFactory {
             false,
             getPositionByCell(cell, field),
             100,
-            100
+            100,
+            false
         )
     }
 
@@ -30,7 +31,8 @@ export class GameObjectFactory {
             true,
             getPositionByCell(cell, field),
             100,
-            100
+            100,
+            false
         )
     }
 
@@ -42,7 +44,8 @@ export class GameObjectFactory {
             vector,
             100,
             100,
-            GameObjectFactory.sprite
+            GameObjectFactory.sprite,
+            false
         )
     }
     static createTower(cell: Cell, field: Field): BaseTower {
@@ -53,10 +56,11 @@ export class GameObjectFactory {
             getPositionByCell(cell, field),
             100,
             100,
-            0,
+            5,
             4,
             50,
-            5
+            5,
+            true
         )
     }
 

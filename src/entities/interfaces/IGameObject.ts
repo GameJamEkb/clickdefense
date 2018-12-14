@@ -4,6 +4,7 @@ import {Field} from "../../Field";
 import {Circle} from "../base/Circle";
 
 export interface IGameObject {
+    reloadBar: boolean;
     collider:ICollider;
     passability: boolean;
     hp: number;

@@ -17,7 +17,8 @@ export class BaseTower implements IGameObject, ITower, IReloader {
                 public timeout: number,
                 public attackPower: number,
                 public weaponRadius: number,
-                public reloadTime: number)
+                public reloadTime: number,
+                public reloadBar: boolean)
     { }
 
     render(ctx: CanvasRenderingContext2D): void {
