@@ -7,6 +7,7 @@ export interface IGameObject {
     collider:ICollider;
     passability: boolean;
     hp: Number;
+    maxHp: Number;
     position: Vector;
     field: Field;
 

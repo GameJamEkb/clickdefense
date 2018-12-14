@@ -4,17 +4,14 @@ import {Field} from "../Field";
 import {ICollider} from "./interfaces/ICollider";
 
 export class EmptyCell implements IGameObject {
-    private static BaseHp = 100;
-
-    hp: Number;
 
     constructor(public collider: ICollider,
                 public field: Field,
                 public passability: boolean,
-                public position: Vector)
-    {
-        this.hp = EmptyCell.BaseHp;
-    }
+                public position: Vector,
+                public hp: number,
+                public maxHp: number)
+    { }
 
     onClick(): void {
     }

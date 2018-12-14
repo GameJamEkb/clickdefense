@@ -8,6 +8,7 @@ import {Enemy} from "../Enemy";
 import {Vector} from "../base/Vector";
 import {ITower} from "../interfaces/ITower";
 import {BaseTower} from "../towers/BaseTower";
+import Base = Mocha.reporters.Base;
 
 export class GameObjectFactory {
     static sprite: HTMLImageElement;
@@ -16,7 +17,9 @@ export class GameObjectFactory {
             new Rectangle(32, 32),
             field,
             false,
-            getPositionByCell(cell, field)
+            getPositionByCell(cell, field),
+            100,
+            100
         )
     }
 
@@ -25,7 +28,9 @@ export class GameObjectFactory {
             new Rectangle(30, 30),
             field,
             true,
-            getPositionByCell(cell, field)
+            getPositionByCell(cell, field),
+            100,
+            100
         )
     }
 
@@ -35,7 +40,9 @@ export class GameObjectFactory {
             field,
             true,
             vector,
-            100, GameObjectFactory.sprite
+            100,
+            100,
+            GameObjectFactory.sprite
         )
     }
     static createTower(cell: Cell, field: Field): BaseTower {
@@ -44,7 +51,12 @@ export class GameObjectFactory {
             field,
             false,
             getPositionByCell(cell, field),
-            BaseTower.BaseHp
+            100,
+            100,
+            0,
+            4,
+            50,
+            5
         )
     }
 

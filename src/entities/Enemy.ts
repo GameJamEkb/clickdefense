@@ -22,6 +22,7 @@ export class Enemy implements IGameObject, IMover {
                 public passability: boolean,
                 public position: Vector,
                 public hp: number,
+                public maxHp: number,
                 public sprite: HTMLImageElement
     ) {
         this.animation = new Animation(
