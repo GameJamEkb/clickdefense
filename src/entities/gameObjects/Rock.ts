@@ -15,6 +15,8 @@ export class Rock implements IGameObject {
 
     onClick(): void {
     }
+    onOver(): void {
+    }
 
     render(ctx: CanvasRenderingContext2D): void {
         // drawCircle(ctx, this.position.x + 5, this.position.y + 5, 5);

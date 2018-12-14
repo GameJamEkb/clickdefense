@@ -6,10 +6,10 @@ import {Field} from "../../Field";
 import {Rock} from "../gameObjects/Rock";
 import {Enemy} from "../gameObjects/Enemy";
 import {Vector} from "../base/Vector";
-import {ITower} from "../interfaces/ITower";
 import {BaseTower} from "../towers/BaseTower";
 import Base = Mocha.reporters.Base;
 import {Spawner} from "../gameObjects/Spawner";
+import {SplashTower} from "../towers/SplashTower";
 
 export class GameObjectFactory {
     static sprite: HTMLImageElement;
@@ -49,7 +49,7 @@ export class GameObjectFactory {
             false
         )
     }
-    static createTower(cell: Cell, field: Field): BaseTower {
+    static createBaseTower(cell: Cell, field: Field): BaseTower {
         return new BaseTower(
             new Rectangle(10, 30),
             field,
@@ -64,6 +64,23 @@ export class GameObjectFactory {
             true
         )
     }
+
+    static createSplashTower(cell: Cell, field: Field): BaseTower {
+        return new SplashTower(
+            new Rectangle(10, 30),
+            field,
+            false,
+            getPositionByCell(cell, field),
+            100,
+            100,
+            0.4,
+            110,
+            50,
+            0.4,
+            true
+        )
+    }
+
     static createSpawner(cell: Cell, field: Field): Spawner {
         return new Spawner(
             new Rectangle(10, 30),
@@ -72,8 +89,8 @@ export class GameObjectFactory {
             getPositionByCell(cell, field),
             100,
             100,
-            1,
-            5,
+            0.01,
+            0.01,
             true
         )
     }

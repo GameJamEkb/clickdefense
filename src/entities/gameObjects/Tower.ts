@@ -1,12 +1,12 @@
 import {IGameObject} from "../interfaces/IGameObject";
 import {Vector} from "../base/Vector";
-import {Field} from "../../Field";
+import {Field} from "../../Field"
+import {drawCircle} from "../../utils/render";
 import {ICollider} from "../interfaces/ICollider";
 import {IReloader} from "../interfaces/IReloader";
-import {fillCircle} from "../../utils/render";
-import {GameObjectFactory} from "../factories/GameObjectFactory";
 
-export class Spawner implements IGameObject, IReloader {
+export abstract class Tower implements IGameObject, IReloader {
+
     constructor(public collider: ICollider,
                 public field: Field,
                 public passability: boolean,
@@ -14,30 +14,19 @@ export class Spawner implements IGameObject, IReloader {
                 public hp: number,
                 public maxHp: number,
                 public timeout: number,
+                public attackPower: number,
+                public weaponRadius: number,
                 public reloadTime: number,
                 public reloadBar: boolean)
     { }
 
-    onClick(): void {
-    }
-
-    onOver(): void {
-    }
-
-    render(ctx: CanvasRenderingContext2D): void {
-        fillCircle(ctx, this.position.x, this.position.y, 15, "green");
-    }
-
-    spawnEnemy() {
-        this.field.addEnemy(GameObjectFactory.createEnemy(this.position, this.field));
-    }
+    abstract tryAttack(): boolean;
+    abstract render(ctx: CanvasRenderingContext2D): void;
+    abstract onClick(): void;
 
     update(elapsed: number): void {
         this.timeout -= elapsed;
-        if (this.isRealoded()) {
-            this.startReload();
-            this.spawnEnemy();
-        }
+        this.tryAttack();
     }
 
     isRealoded(): boolean {

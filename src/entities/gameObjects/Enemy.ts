@@ -57,6 +57,10 @@ export class Enemy implements IGameObject, IMover {
     onClick(): void {
     }
 
+    onOver(): void {
+
+    }
+
     gotHit(powerHit: number): void {
         this.hp -= powerHit
     }

@@ -1,38 +1,20 @@
-import {Vector} from "../base/Vector";
-import {Field} from "../../Field"
 import {drawCircle} from "../../utils/render";
-import {ITower} from "../interfaces/ITower";
+import {Tower} from "../gameObjects/Tower";
 import {IReloader} from "../interfaces/IReloader";
 import {IGameObject} from "../interfaces/IGameObject";
-import {ICollider} from "../interfaces/ICollider";
 
-export class BaseTower implements IGameObject, ITower, IReloader {
+export class BaseTower extends Tower implements IGameObject, IReloader {
 
-    constructor(public collider: ICollider,
-                public field: Field,
-                public passability: boolean,
-                public position: Vector,
-                public hp: number,
-                public maxHp: number,
-                public timeout: number,
-                public attackPower: number,
-                public weaponRadius: number,
-                public reloadTime: number,
-                public reloadBar: boolean)
-    { }
-
-    render(ctx: CanvasRenderingContext2D): void {
-        drawCircle(ctx, this.position.x, this.position.y, 15);
-    }
-
-    attackEnemy(attackPower: number): void {
+    tryAttack(): boolean {
         if (this.isRealoded()) {
             var enemies = this.field.getEnemiesFromRadius(this.position, this.weaponRadius)
             if (enemies.length) {
-                enemies[0].gotHit(attackPower)
-                this.startReload()
+                enemies[0].gotHit(this.attackPower);
+                this.startReload();
+                return true;
             }
         };
+        return false
     }
 
     onClick(): void {
@@ -40,20 +22,17 @@ export class BaseTower implements IGameObject, ITower, IReloader {
         this.timeout -= 0.3
     }
 
+    onOver(): void {
+
+    }
+
     update(elapsed: number): void {
         this.timeout -= elapsed;
-        this.attackEnemy(this.attackPower)
+        this.tryAttack()
     }
 
-    attack(): boolean {
-        return false;
+    render(ctx: CanvasRenderingContext2D): void {
+        drawCircle(ctx, this.position.x, this.position.y, 15);
     }
 
-    isRealoded(): boolean {
-        return this.timeout <= 0;
-    }
-
-    startReload(): void {
-        this.timeout = this.reloadTime;
-    }
 }
