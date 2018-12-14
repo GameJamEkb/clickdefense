@@ -58,7 +58,8 @@ export class Field {
         this.objects.forEach(line =>
             line
                 .filter(x => x.reloadBar)
-                .forEach(x => ReloadBar.render(ctx, x as unknown as IReloader, this))
+                // @ts-ignore
+                .forEach((x) => ReloadBar.render(ctx, x, this))
         );
     }
 

@@ -4,8 +4,8 @@ import {GameObjectFactory} from "./entities/factories/GameObjectFactory";
 
 const canvas = document.createElement('canvas');
 
-canvas.width = 640;
-canvas.height = 480;
+canvas.width = 800;
+canvas.height = 600;
 
 const ctx = canvas.getContext('2d');
 if (ctx == null) {
