@@ -15,13 +15,13 @@ export class Game {
 
         // Test Rocck TODO: Remove
         this.field = new Field(GameConfig.WidthInCells, GameConfig.HeightInCells, GameConfig.CellSize, levelNumber);
-        // this.field.addObject(GameObjectFactory.createRock(4, 6, this.field));
-        this.loadLevel()
         this.player = new Player(
             "Гордый Арсений",
             GameConfig.StartGold,
             this
         );
+        // this.field.addObject(GameObjectFactory.createRock(4, 6, this.field));
+        this.loadLevel()
 
         // Test Rocck TODO: Remove
         this.field.addObject(GameObjectFactory.createRock(new Cell(4, 6), this.field));
@@ -54,6 +54,7 @@ export class Game {
                 };
             };
         });
+        this.player.onLevelStart(this.field)
     }
 
     onLose() {

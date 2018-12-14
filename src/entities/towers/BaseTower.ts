@@ -8,7 +8,7 @@ import {ICollider} from "../interfaces/ICollider";
 
 export class BaseTower implements IGameObject, ITower, IReloader {
     static BaseHp = 100;
-    static BaseReloadTime = 5;
+    static BaseReloadTime = 0.3;
 
     WeaponRadius = 50;
     AttackPower = 4;
@@ -30,19 +30,26 @@ export class BaseTower implements IGameObject, ITower, IReloader {
         drawCircle(ctx, this.position.x, this.position.y, 15);
     }
 
-    attackEnemy(): void {
-        var enemies = this.field.getEnemiesFromRadius(this.position, this.WeaponRadius)
-        enemies.forEach(enemy => {
-            enemy.gotHit(this.AttackPower)
-        })
+    attackEnemy(attackPower: number): void {
+        var Reload = this.isRealoded()
+        if (Reload) {
+            var enemies = this.field.getEnemiesFromRadius(this.position, this.WeaponRadius)
+            enemies.forEach(enemy => {
+                enemy.gotHit(attackPower)
+            });
+            this.startReload()
+        };
     }
 
     onClick(): void {
-        this.attackEnemy()
+        this.attackEnemy(this.AttackPower)
     }
 
     update(elapsed: number): void {
-        this.attackEnemy()
+        this.timeout -= elapsed;
+        console.log(this.timeout)
+        this.attackEnemy(this.AttackPower)
+
     }
 
     attack(): boolean {
@@ -50,7 +57,7 @@ export class BaseTower implements IGameObject, ITower, IReloader {
     }
 
     isRealoded(): boolean {
-        return false;
+        return this.timeout <= 0;
     }
 
     startReload(): void {
