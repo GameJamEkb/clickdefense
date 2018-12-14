@@ -1,10 +1,10 @@
+
 import {GameObject} from "../src/entities/base/GameObject";
 import {Vector} from "../src/entities/base/Vector";
 import {bfs} from "../src/utils";
 import {Cell} from "../src/entities/base/Cell";
 import expect from "expect";
 import {Field} from "../src/Field";
-import {Collider} from "../src/entities/base/Collider";
 import {Rectangle} from "../src/entities/base/Rectangle";
 
 class TestNode extends GameObject {

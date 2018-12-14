@@ -22,7 +22,7 @@ export class Field {
         this.goldPosition = new Vector(0,0);
         this.objects = Array.from({length: this.width})
             .map((_, x) => Array.from({length: this.height})
-                .map((_, y) => new EmptyCell(x, y)));
+                .map((_, y) => new EmptyCell(x, y, this)));
         this.enemies = [];
     }
 
