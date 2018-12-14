@@ -1,7 +1,7 @@
 import {IGameObject} from "../interfaces/IGameObject";
 import {Vector} from "../base/Vector";
 import {IMover} from "../interfaces/IMover";
-import {getCellByPostion} from "../../utils/positions";
+import {getCellByPostion, getPositionByCell} from "../../utils/positions";
 import {Cell} from "../base/Cell";
 import {Field} from "../../Field";
 import {ICollider} from "../interfaces/ICollider";
@@ -27,6 +27,10 @@ export class Enemy implements IGameObject, IMover {
                 public reloadBar: boolean,
                 public animation: Animation,
                 public destination: Cell,
+                public goldCount: number,
+                public runAway: boolean,
+                public startPosition: Cell,
+                public speed: number
     ) { }
 
     get cell(): Cell {
@@ -51,6 +55,8 @@ export class Enemy implements IGameObject, IMover {
     }
 
     onClick(): void {
+        this.gotHit(10)
+        console.log("AAaaaa")
     }
 
     onOver(): void {
@@ -73,15 +79,26 @@ export class Enemy implements IGameObject, IMover {
     }
 
     update(elapsed: number): void {
-        if (this.hp < 0){
+        if (this.hp <= 0){
             this.field.killEnemy()
         }
         this.animation.update(elapsed);
-        if (this.nextPoint.dec(this.position).length() < 2) {
+        if (this.position.dec(getPositionByCell(this.destination, this.field)).length() < GameConfig.PathFinderPixelDelta) {
+            if (this.runAway) {
+                this.hp = 0;
+                this.field.killEnemy();
+            } else {
+                this.goldCount += this.field.stealGold(this.hp + this.goldCount);
+                this.runAway = true;
+                this.destination = this.startPosition;
+            }
+        }
+
+        if (this.nextPoint.dec(this.position).length() < GameConfig.PathFinderPixelDelta) {
             this.setNextPoint();
         } else {
             const direction = this.nextPoint.dec(this.position).normalize();
-            this.position = this.position.add(direction.mult(2));
+            this.position = this.position.add(direction.mult(this.speed));
         }
     }
 }

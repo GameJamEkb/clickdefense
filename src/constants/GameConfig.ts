@@ -11,10 +11,14 @@ export class GameConfig {
     static CanvasWidth: number = 800;
     static CanvasHeight: number = 600;
 
-    static ShowEnemiesColliders: boolean = true;
+    static ShowEnemiesColliders: boolean = false;
     static ShowTowersColliders: boolean = true;
 
-    static ShowEnemiesHitBars: boolean = true;
+    static ShowEnemiesHitBars: boolean = false;
     static ShowTowersReloadBars: boolean = true;
+
+    static sprite: HTMLImageElement;
+
+    static PathFinderPixelDelta: number = 2;
 
 }

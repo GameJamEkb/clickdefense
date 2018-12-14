@@ -3,7 +3,7 @@ import {Vector} from "./entities/base/Vector";
 import {Enemy} from "./entities/gameObjects/Enemy";
 import {getCellByPostion} from "./utils/positions";
 import {Cell} from "./entities/base/Cell";
-import {GameObjectFactory} from "./entities/factories/GameObjectFactory";
+import {TowerFactory} from "./entities/factories/TowerFactory";
 import {HpBar} from "./entities/ui/HpBar";
 import {ReloadBar} from "./entities/ui/ReloadBar";
 import {IReloader} from "./entities/interfaces/IReloader";
@@ -12,21 +12,23 @@ import {GameConfig} from "./constants/GameConfig";
 import {drawRectangleCollider} from "./utils/render";
 import {Rectangle} from "./entities/base/Rectangle";
 import {Tower} from "./entities/gameObjects/Tower";
+import {Player} from "./Player";
+import {GameObjectsFactory} from "./entities/factories/GameObjectsFactory";
 
 export class Field {
     objects: Array<Array<IGameObject>>;
-    goldPosition: Vector;
+    goldPosition: Vector = new Vector(0, 0);
     enemies: Array<Enemy>;
 
     constructor(public width: number,
                 public height: number,
                 public cellSize: number,
-                public levelId: number)
+                public levelId: number,
+                public player: Player)
     {
-        this.goldPosition = new Cell(5,5);
         this.objects = Array.from({length: this.width})
             .map((_, x) => Array.from({length: this.height})
-                .map((_, y) => GameObjectFactory.createEmptyCell(new Cell(x, y), this)));
+                .map((_, y) => GameObjectsFactory.createEmptyCell(new Cell(x, y), this)));
         this.enemies = [];
     }
 
@@ -42,6 +44,12 @@ export class Field {
     killEnemy()
     {
         this.enemies = this.enemies.filter(enemy => enemy.hp > 0);
+    }
+
+    killTrap(position : Vector)
+    {
+        var cell = getCellByPostion(position, this);
+        this.objects[cell.x][cell.y] = GameObjectsFactory.createEmptyCell(cell, this)
     }
 
     getEnemiesFromRadius(position: Vector, radius: number): Array<Enemy>
@@ -86,6 +94,11 @@ export class Field {
             );
         }
 
+    }
+
+    stealGold(goldPower: number) {
+        this.player.gold -= goldPower;
+        return goldPower;
     }
 
     update(elapsed: number): void {
