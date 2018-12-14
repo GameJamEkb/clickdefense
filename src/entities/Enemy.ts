@@ -2,6 +2,7 @@ import {Field} from "../Field";
 import {GameObject} from "./base/GameObject";
 import {Vector} from "./base/Vector";
 import {IMover} from "./interfaces/IMover";
+import {bfs} from "../utils";
 
 class Enemy extends GameObject implements IMover {
     destination: Vector;
@@ -26,6 +27,15 @@ class Enemy extends GameObject implements IMover {
 
     findNextPoint(): Vector {
         this.point = undefined;
-        return new Vector
+        const path = bfs(this.field.objects, this.cell, this.destination);
+        if (path.length) {
+            return path[0];
+        }
+
+        return this.cell;
+    }
+
+    render() {
+
     }
 }

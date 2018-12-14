@@ -25,6 +25,10 @@ export class Vector {
         return new Vector(this.x / k, this.y / k);
     }
 
+    eql(v: Vector): boolean {
+        return this.x === v.x && this.y === v.y;
+    }
+
     length() : number {
         return pifagor(this.x, this.y);
     }
