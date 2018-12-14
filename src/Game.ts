@@ -68,7 +68,6 @@ export class Game {
         this.field.enemies.forEach( enemy =>{
                 if (enemy.collider.isInside(enemy.position, new Vector(x-GameConfig.GameFieldTranslateX,y-GameConfig.GameFieldTranslateY))){
                     enemy.onClick();
-                    breake
                 };
             });
         this.field.objects.forEach( line =>{

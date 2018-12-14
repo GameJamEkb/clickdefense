@@ -1,7 +1,8 @@
-import {fillCircle, fillRectangle} from "../../utils/render";
+import {drawRectangleCollider, fillCircle, fillRectangle} from "../../utils/render";
 import {Tower} from "../gameObjects/Tower";
 import {IReloader} from "../interfaces/IReloader";
 import {IGameObject} from "../interfaces/IGameObject";
+import {Rectangle} from "../base/Rectangle";
 
 export class TrapTower extends Tower implements IGameObject, IReloader {
 
@@ -38,6 +39,10 @@ export class TrapTower extends Tower implements IGameObject, IReloader {
         if (this.hp <= 0) {
             this.field.killTrap(this.position)
         }
+    }
+
+    drawCollider(ctx: CanvasRenderingContext2D): void {
+        drawRectangleCollider(ctx, this.position, this.collider as Rectangle);
     }
 
 }

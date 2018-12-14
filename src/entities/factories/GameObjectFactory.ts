@@ -107,7 +107,7 @@ export class GameObjectFactory {
 
     static createTrapTower(cell: Cell, field: Field): BaseTower {
         return new TrapTower(
-            new Rectangle(10, 30),
+            new Rectangle(32, 32, 0, 0),
             field,
             true,
             getPositionByCell(cell, field),
