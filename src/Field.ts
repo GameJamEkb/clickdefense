@@ -53,6 +53,9 @@ export class Field {
     }
 
     update(elapsed: number): void {
+        this.objects.forEach(line =>
+            line.forEach(x => x.update(elapsed))
+        );
         this.enemies.forEach(enemy => enemy.update(elapsed));
     }
 }
