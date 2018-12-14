@@ -9,30 +9,31 @@ import {Vector} from "../base/Vector";
 
 export class GameObjectFactory {
     static sprite: HTMLImageElement;
-    static createRock(x: number, y: number, field: Field) {
+    static createRock(cell: Cell, field: Field) {
         return new Rock(
             new Rectangle(32, 32),
             field,
             false,
-            getPositionByCell(new Cell(x, y), field)
+            getPositionByCell(cell, field)
         )
     }
 
-    static createEmptyCell(x: number, y: number, field: Field): EmptyCell {
+    static createEmptyCell(cell: Cell, field: Field): EmptyCell {
         return new EmptyCell(
             new Rectangle(30, 30),
             field,
             true,
-            getPositionByCell(new Cell(x, y), field)
+            getPositionByCell(cell, field)
         )
     }
 
-    static createEnemy(x: number, y: number, field: Field): Enemy {
+    static createEnemy(vector: Vector, field: Field): Enemy {
         return new Enemy(
             new Rectangle(10, 30),
-            field, true,
-            new Vector(x, y), 100, GameObjectFactory.sprite
+            field,
+            true,
+            vector,
+            100, GameObjectFactory.sprite
         )
-        // return new Enemy(new Vector(x, y), 10, field, GameObjectFactory.sprite);
     }
 }
