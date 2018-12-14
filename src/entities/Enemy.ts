@@ -6,11 +6,15 @@ import {Cell} from "./base/Cell";
 import {Field} from "../Field";
 import {ICollider} from "./interfaces/ICollider";
 import {bfs} from "../utils/bfs";
+import { Animation} from "../Animation";
+import {drawRectangleCollider} from "../utils/render";
+import {Rectangle} from "./base/Rectangle";
 
 export class Enemy implements IGameObject, IMover {
     nextPoint: Vector = this.position;
     destination: Cell = this.position;
     private point?: Vector;
+    animation: Animation;
 
 
     constructor(public collider: ICollider,
@@ -20,7 +24,9 @@ export class Enemy implements IGameObject, IMover {
                 public hp: number,
                 public sprite: HTMLImageElement
     ) {
-
+        this.animation = new Animation(
+            368 * 2, 204 * 2, 32, 0, 0.2, 3
+        );
         this.destination = field.goldPosition;
     }
 
@@ -54,13 +60,14 @@ export class Enemy implements IGameObject, IMover {
 
     render(ctx: CanvasRenderingContext2D): void {
         ctx.beginPath();
-        ctx.fillStyle = 'red';
-        ctx.fillRect(this.position.x - 15, this.position.y - 15, 30, 30);
-        ctx.drawImage(this.sprite, 0, 0, 10, 10, this.position.x - 16, this.position.y - 16, 30, 30);
+        const frame = this.animation.frame;
+        ctx.drawImage(this.sprite, frame.x, frame.y, 32, 40, this.position.x - 18, this.position.y - 35, 32, 40);
+        drawRectangleCollider(ctx, this.position, this.collider as Rectangle);
         ctx.closePath();
     }
 
     update(elapsed: number): void {
+        this.animation.update(elapsed);
         if (this.nextPoint.dec(this.position).length() < 2) {
             this.setNextPoint();
         } else {

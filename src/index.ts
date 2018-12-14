@@ -15,7 +15,7 @@ if (ctx == null) {
 document.body.appendChild(canvas);
 
 const sprite = new Image(10,10);
-sprite.src = '/public/images/orc_sprite.png';
+sprite.src = '/public/images/sprites.png';
 sprite.onload = () => {
     GameObjectFactory.sprite = sprite;
 

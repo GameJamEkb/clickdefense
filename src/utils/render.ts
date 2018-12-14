@@ -27,5 +27,6 @@ export function drawCircleCollider(ctx: CanvasRenderingContext2D, position: Vect
 }
 
 export function drawRectangleCollider(ctx: CanvasRenderingContext2D, position: Vector, rectangle: Rectangle) {
+    ctx.strokeStyle = 'red';
     drawRectangle(ctx, position.x - rectangle.width / 2, position.y - rectangle.height / 2, rectangle.width, rectangle.height);
 }

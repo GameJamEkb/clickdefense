@@ -30,7 +30,7 @@ export class GameObjectFactory {
 
     static createEnemy(vector: Vector, field: Field): Enemy {
         return new Enemy(
-            new Rectangle(10, 30),
+            new Rectangle(20, 10),
             field,
             true,
             vector,
