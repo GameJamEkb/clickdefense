@@ -12,18 +12,19 @@ import {GameConfig} from "./constants/GameConfig";
 import {drawRectangleCollider} from "./utils/render";
 import {Rectangle} from "./entities/base/Rectangle";
 import {Tower} from "./entities/gameObjects/Tower";
+import {Player} from "./Player";
 
 export class Field {
     objects: Array<Array<IGameObject>>;
-    goldPosition: Vector;
+    goldPosition: Vector = new Vector(0, 0);
     enemies: Array<Enemy>;
 
     constructor(public width: number,
                 public height: number,
                 public cellSize: number,
-                public levelId: number)
+                public levelId: number,
+                public player: Player)
     {
-        this.goldPosition = new Cell(5,5);
         this.objects = Array.from({length: this.width})
             .map((_, x) => Array.from({length: this.height})
                 .map((_, y) => GameObjectFactory.createEmptyCell(new Cell(x, y), this)));
@@ -86,6 +87,15 @@ export class Field {
             );
         }
 
+    }
+
+    // TODO
+    stealGold(goldPower: number) {
+        return goldPower;
+    }
+    // TODO
+    getClosestSpawnerCell(position: Vector): Cell {
+        return new Cell(0, 0);
     }
 
     update(elapsed: number): void {

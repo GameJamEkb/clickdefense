@@ -12,6 +12,8 @@ import {Spawner} from "../gameObjects/Spawner";
 import {SplashTower} from "../towers/SplashTower";
 import {Animation} from "../../Animation";
 import {randomInt} from "../../utils/nums";
+import {Circle} from "../base/Circle";
+import {Gold} from "../gameObjects/Gold";
 
 export class GameObjectFactory {
     static sprite: HTMLImageElement;
@@ -25,6 +27,18 @@ export class GameObjectFactory {
             100,
             false,
             GameObjectFactory.sprite
+        )
+    }
+
+    static createGold(cell: Cell, field: Field) {
+        return new Gold(
+            new Circle(16, 0, 0),
+            field,
+            true,
+            getPositionByCell(cell, field),
+            100,
+            100,
+            false
         )
     }
 
@@ -52,7 +66,9 @@ export class GameObjectFactory {
             GameObjectFactory.sprite,
             false,
             new Animation(368 * 2, 204 * 2, 32, 0, 0.2, 3, randomInt(0, 4)),
-            field.goldPosition
+            field.goldPosition,
+            10,
+            false
         )
     }
 

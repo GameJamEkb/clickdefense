@@ -1,7 +1,7 @@
 import {IGameObject} from "../interfaces/IGameObject";
 import {Vector} from "../base/Vector";
 import {IMover} from "../interfaces/IMover";
-import {getCellByPostion} from "../../utils/positions";
+import {getCellByPostion, getPositionByCell} from "../../utils/positions";
 import {Cell} from "../base/Cell";
 import {Field} from "../../Field";
 import {ICollider} from "../interfaces/ICollider";
@@ -27,6 +27,8 @@ export class Enemy implements IGameObject, IMover {
                 public reloadBar: boolean,
                 public animation: Animation,
                 public destination: Cell,
+                public goldCount: number,
+                public runAway: boolean,
     ) { }
 
     get cell(): Cell {
@@ -77,6 +79,17 @@ export class Enemy implements IGameObject, IMover {
             this.field.killEnemy()
         }
         this.animation.update(elapsed);
+        if (this.position.dec(getPositionByCell(this.destination, this.field)).length() < 2) {
+            if (this.runAway) {
+                this.hp = -100;
+                this.field.killEnemy();
+            } else {
+                this.goldCount += this.field.stealGold(this.hp + this.goldCount);
+                this.runAway = true;
+                this.destination = this.field.getClosestSpawnerCell(this.position);
+            }
+        }
+
         if (this.nextPoint.dec(this.position).length() < 2) {
             this.setNextPoint();
         } else {

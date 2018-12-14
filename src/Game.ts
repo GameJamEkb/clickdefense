@@ -11,15 +11,18 @@ export class Game {
     player: Player;
 
     constructor(levelNumber: number) {
-
-        // Test Rocck TODO: Remove
-        this.field = new Field(GameConfig.WidthInCells, GameConfig.HeightInCells, GameConfig.CellSize, levelNumber);
         this.player = new Player(
             "Гордый Арсений",
             GameConfig.StartGold,
             this
         );
-        // this.field.addObject(GameObjectFactory.createRock(4, 6, this.field));
+
+        this.field = new Field(
+            GameConfig.WidthInCells,
+            GameConfig.HeightInCells,
+            GameConfig.CellSize,
+            levelNumber,
+            this.player);
         this.loadLevel()
     }
 
@@ -46,6 +49,9 @@ export class Game {
                     this.field.addObject(GameObjectFactory.createSpawner(cell, this.field));
                 } else if (line.charAt(j) == "O") {
                     this.field.addObject(GameObjectFactory.createSplashTower(cell, this.field));
+                } else if (line.charAt(j) == "G") {
+                    this.field.addObject(GameObjectFactory.createGold(cell, this.field));
+                    this.field.goldPosition = cell;
                 }
             }
         });

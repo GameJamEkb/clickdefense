@@ -22,14 +22,19 @@ export function fillRectangle(ctx: CanvasRenderingContext2D, x: number, y: numbe
     ctx.fillRect(x, y, width, height);
 }
 
-export function fillCircle(ctx: CanvasRenderingContext2D, x: number, y: number, r: number, fillStyle: string) {
+export function fillCircle(ctx: CanvasRenderingContext2D, x: number, y: number, r: number, fillStyle: string, stroke: boolean = false) {
     ctx.beginPath();
     ctx.arc(x, y, r, 0, 2 * Math.PI);
     ctx.fillStyle = fillStyle;
     ctx.fill();
+    if (stroke) {
+        ctx.strokeStyle = 'black';
+        ctx.stroke();
+    }
 }
 
 export function drawCircleCollider(ctx: CanvasRenderingContext2D, position: Vector, circle: Circle) {
+    ctx.strokeStyle = 'red';
     drawCircle(
         ctx,
         position.x + circle.offsetX,
