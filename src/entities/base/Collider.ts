@@ -1,3 +1,3 @@
-export class Collider {
+export abstract class Collider {
 
 }
