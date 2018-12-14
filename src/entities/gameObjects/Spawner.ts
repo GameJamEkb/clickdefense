@@ -29,7 +29,7 @@ export class Spawner implements IGameObject, IReloader {
     }
 
     spawnEnemy() {
-        this.field.addEnemy(GameObjectFactory.createEnemy(this.position, this.field));
+        this.field.addEnemy(GameObjectFactory.createOrk(this.position, this.field));
     }
 
     update(elapsed: number): void {

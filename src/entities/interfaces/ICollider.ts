@@ -2,7 +2,10 @@ import {IGameObject} from "./IGameObject";
 import {Vector} from "../base/Vector";
 
 export interface ICollider {
-    checkCollision(position: Vector, another: IGameObject): boolean;
+    offsetX: number;
+    offsetY: number;
 
-    isInside(position: Vector, point: Vector): boolean;
+    checkCollision(baseObjectPosition: Vector, another: IGameObject): boolean;
+
+    isInside(baseObjectPosition: Vector, point: Vector): boolean;
 }

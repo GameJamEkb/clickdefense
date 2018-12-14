@@ -1,7 +1,9 @@
-import {drawCircle} from "../../utils/render";
+import {drawCircle, drawRectangleCollider, fillCircle} from "../../utils/render";
 import {Tower} from "../gameObjects/Tower";
 import {IReloader} from "../interfaces/IReloader";
 import {IGameObject} from "../interfaces/IGameObject";
+import {GameConfig} from "../../constants/GameConfig";
+import {Rectangle} from "../base/Rectangle";
 
 export class BaseTower extends Tower implements IGameObject, IReloader {
 
@@ -17,6 +19,13 @@ export class BaseTower extends Tower implements IGameObject, IReloader {
         return false
     }
 
+    render(ctx: CanvasRenderingContext2D): void {
+        fillCircle(ctx, this.position.x, this.position.y, 15, "pink");
+    }
+
+    drawCollider(ctx: CanvasRenderingContext2D): void {
+        drawRectangleCollider(ctx, this.position, this.collider as Rectangle);
+    }
     onClick(): void {
         // this.attackEnemy(this.attackPower)
         this.timeout -= 0.3
@@ -30,9 +39,4 @@ export class BaseTower extends Tower implements IGameObject, IReloader {
         this.timeout -= elapsed;
         this.tryAttack()
     }
-
-    render(ctx: CanvasRenderingContext2D): void {
-        drawCircle(ctx, this.position.x, this.position.y, 15);
-    }
-
 }

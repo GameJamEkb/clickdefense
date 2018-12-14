@@ -27,14 +27,23 @@ export function fillCircle(ctx: CanvasRenderingContext2D, x: number, y: number, 
     ctx.arc(x, y, r, 0, 2 * Math.PI);
     ctx.fillStyle = fillStyle;
     ctx.fill();
-    ctx.stroke();
 }
 
 export function drawCircleCollider(ctx: CanvasRenderingContext2D, position: Vector, circle: Circle) {
-    drawCircle(ctx, position.x, position.y, circle.r);
+    drawCircle(
+        ctx,
+        position.x + circle.offsetX,
+        position.y + circle.offsetY,
+        circle.r
+    );
 }
 
 export function drawRectangleCollider(ctx: CanvasRenderingContext2D, position: Vector, rectangle: Rectangle) {
     ctx.strokeStyle = 'red';
-    drawRectangle(ctx, position.x - rectangle.width / 2, position.y - rectangle.height / 2, rectangle.width, rectangle.height);
+    drawRectangle(
+        ctx,
+        position.x - rectangle.width / 2 + rectangle.offsetX,
+        position.y - rectangle.height / 2 + rectangle.offsetY,
+        rectangle.width,
+        rectangle.height);
 }

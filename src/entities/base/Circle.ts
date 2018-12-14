@@ -4,7 +4,9 @@ import {Vector} from "./Vector";
 import {Rectangle} from "./Rectangle";
 
 export class Circle implements ICollider {
-    constructor(public r: number) { }
+    constructor(public r: number,
+                public offsetX: number,
+                public offsetY: number) { }
 
     checkCollision(position: Vector, another: IGameObject): boolean {
         if (another.collider instanceof Circle) {
@@ -17,7 +19,7 @@ export class Circle implements ICollider {
     }
 
     isInside(position: Vector, point: Vector): boolean {
-        return position.dec(point).length() < this.r;
+        return position.add(new Vector(this.offsetX, this.offsetY)).dec(point).length() < this.r;
     }
 
 }

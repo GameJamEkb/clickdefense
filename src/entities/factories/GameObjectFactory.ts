@@ -10,49 +10,59 @@ import {BaseTower} from "../towers/BaseTower";
 import Base = Mocha.reporters.Base;
 import {Spawner} from "../gameObjects/Spawner";
 import {SplashTower} from "../towers/SplashTower";
+<<<<<<< HEAD
 import {TrapTower} from "../towers/TrapTower";
+=======
+import {Animation} from "../../Animation";
+import {randomInt} from "../../utils/nums";
+>>>>>>> 7550dd05323db5b41e1261a8fa8f83bceff7d723
 
 export class GameObjectFactory {
     static sprite: HTMLImageElement;
     static createRock(cell: Cell, field: Field) {
         return new Rock(
-            new Rectangle(32, 32),
+            new Rectangle(32, 32, 0, 0),
             field,
             false,
             getPositionByCell(cell, field),
             100,
             100,
-            false
+            false,
+            GameObjectFactory.sprite
         )
     }
 
     static createEmptyCell(cell: Cell, field: Field): EmptyCell {
         return new EmptyCell(
-            new Rectangle(30, 30),
+            new Rectangle(30, 30, 0, 0),
             field,
             true,
             getPositionByCell(cell, field),
             100,
             100,
-            false
+            false,
+            GameObjectFactory.sprite
         )
     }
 
-    static createEnemy(vector: Vector, field: Field): Enemy {
+    static createOrk(vector: Vector, field: Field): Enemy {
         return new Enemy(
-            new Rectangle(20, 10),
+            new Rectangle(20, 30, 0, -10),
             field,
             true,
             vector,
             100,
             100,
             GameObjectFactory.sprite,
-            false
+            false,
+            new Animation(368 * 2, 204 * 2, 32, 0, 0.2, 3, randomInt(0, 4)),
+            field.goldPosition
         )
     }
+
     static createBaseTower(cell: Cell, field: Field): BaseTower {
         return new BaseTower(
-            new Rectangle(10, 30),
+            new Rectangle(32, 32, 0, 0),
             field,
             false,
             getPositionByCell(cell, field),
@@ -68,7 +78,7 @@ export class GameObjectFactory {
 
     static createSplashTower(cell: Cell, field: Field): BaseTower {
         return new SplashTower(
-            new Rectangle(10, 30),
+            new Rectangle(32, 32, 0, 0),
             field,
             false,
             getPositionByCell(cell, field),
@@ -100,7 +110,7 @@ export class GameObjectFactory {
 
     static createSpawner(cell: Cell, field: Field): Spawner {
         return new Spawner(
-            new Rectangle(10, 30),
+            new Rectangle(10, 30, 0, 0),
             field,
             true,
             getPositionByCell(cell, field),

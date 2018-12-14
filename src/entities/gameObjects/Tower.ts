@@ -1,9 +1,11 @@
 import {IGameObject} from "../interfaces/IGameObject";
 import {Vector} from "../base/Vector";
 import {Field} from "../../Field"
-import {drawCircle} from "../../utils/render";
+import {drawCircle, drawRectangleCollider} from "../../utils/render";
 import {ICollider} from "../interfaces/ICollider";
 import {IReloader} from "../interfaces/IReloader";
+import {GameConfig} from "../../constants/GameConfig";
+import {Rectangle} from "../base/Rectangle";
 
 export abstract class Tower implements IGameObject, IReloader {
 
@@ -23,6 +25,7 @@ export abstract class Tower implements IGameObject, IReloader {
     abstract tryAttack(): boolean;
     abstract render(ctx: CanvasRenderingContext2D): void;
     abstract onClick(): void;
+    abstract drawCollider(ctx: CanvasRenderingContext2D): void;
 
     update(elapsed: number): void {
         this.timeout -= elapsed;
