@@ -1,3 +1,3 @@
 import { Vector } from "./Vector";
 
-export type Cell = Vector;
+export class Cell extends Vector {}
