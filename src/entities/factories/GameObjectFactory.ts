@@ -6,6 +6,7 @@ import {Field} from "../../Field";
 import {Rock} from "../Rock";
 import {Enemy} from "../Enemy";
 import {Vector} from "../base/Vector";
+import {Tower} from "../Tower";
 
 export class GameObjectFactory {
     static sprite: HTMLImageElement;
@@ -35,4 +36,13 @@ export class GameObjectFactory {
         )
         // return new Enemy(new Vector(x, y), 10, field, GameObjectFactory.sprite);
     }
+    static createTower(x: number, y: number, field: Field): Tower {
+        return new Tower(
+            new Rectangle(10, 30),
+            field, true,
+            new Vector(x, y), 100
+        )
+        // return new Enemy(new Vector(x, y), 10, field, GameObjectFactory.sprite);
+    }
+
 }
