@@ -16,6 +16,8 @@ export class Rock implements IGameObject {
 
     onClick(): void {
     }
+    onOver(): void {
+    }
 
     render(ctx: CanvasRenderingContext2D): void {
         ctx.drawImage(this.sprite, 64, 320, 32, 32, this.position.x - 16, this.position.y - 16, 32, 32)

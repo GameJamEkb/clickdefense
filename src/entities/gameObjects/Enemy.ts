@@ -10,12 +10,11 @@ import { Animation} from "../../Animation";
 import {drawRectangleCollider} from "../../utils/render";
 import {Rectangle} from "../base/Rectangle";
 import {randomInt} from "../../utils/nums";
+import {GameConfig} from "../../constants/GameConfig";
 
 export class Enemy implements IGameObject, IMover {
     nextPoint: Vector = this.position;
-    destination: Cell = this.position;
     private point?: Vector;
-    animation: Animation;
 
 
     constructor(public collider: ICollider,
@@ -25,13 +24,10 @@ export class Enemy implements IGameObject, IMover {
                 public hp: number,
                 public maxHp: number,
                 public sprite: HTMLImageElement,
-                public reloadBar: boolean
-    ) {
-        this.animation = new Animation(
-            368 * 2, 48 * 2, 32, 0, 0.2, 3, randomInt(0, 4)
-        );
-        this.destination = field.goldPosition;
-    }
+                public reloadBar: boolean,
+                public animation: Animation,
+                public destination: Cell,
+    ) { }
 
     get cell(): Cell {
         return getCellByPostion(this.position, this.field);
@@ -57,6 +53,10 @@ export class Enemy implements IGameObject, IMover {
     onClick(): void {
     }
 
+    onOver(): void {
+
+    }
+
     gotHit(powerHit: number): void {
         this.hp -= powerHit
     }
@@ -65,7 +65,9 @@ export class Enemy implements IGameObject, IMover {
         ctx.beginPath();
         const frame = this.animation.frame;
         ctx.drawImage(this.sprite, frame.x, frame.y, 32, 40, this.position.x - 18, this.position.y - 35, 32, 40);
-        drawRectangleCollider(ctx, this.position, this.collider as Rectangle);
+        if (GameConfig.ShowEnemiesColliders) {
+            drawRectangleCollider(ctx, this.position, this.collider as Rectangle);
+        }
         ctx.closePath();
 
     }
@@ -82,6 +84,4 @@ export class Enemy implements IGameObject, IMover {
             this.position = this.position.add(direction.mult(2));
         }
     }
-
-
 }

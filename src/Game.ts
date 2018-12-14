@@ -41,9 +41,11 @@ export class Game {
                 } else if (line.charAt(j) == "R") {
                     this.field.addObject(GameObjectFactory.createRock(cell, this.field));
                 } else if (line.charAt(j) == "T") {
-                    this.field.addObject(GameObjectFactory.createTower(cell , this.field));
+                    this.field.addObject(GameObjectFactory.createBaseTower(cell , this.field));
                 } else if (line.charAt(j) == "S") {
                     this.field.addObject(GameObjectFactory.createSpawner(cell, this.field));
+                } else if (line.charAt(j) == "O") {
+                    this.field.addObject(GameObjectFactory.createSplashTower(cell, this.field));
                 }
             }
         });
@@ -52,5 +54,24 @@ export class Game {
 
     onLose() {
         //TODO: End level and restart
+    }
+
+    mouseClick(x:number, y:number){
+        this.field.objects.forEach( line =>{
+            line.forEach( object =>{
+                if (object.collider.isInside(object.position, new Vector(x-GameConfig.GameFieldTranslateX,y-GameConfig.GameFieldTranslateY))){
+                    object.onClick();
+                };
+            });
+        });
+    }
+    mouseOver(x:number, y:number){
+        this.field.objects.forEach( line =>{
+            line.forEach( object =>{
+                if (object.collider.isInside(object.position, new Vector(x-GameConfig.GameFieldTranslateX,y-GameConfig.GameFieldTranslateY))){
+                    object.onOver();
+                };
+            });
+        });
     }
 }

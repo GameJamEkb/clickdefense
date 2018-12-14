@@ -13,6 +13,7 @@ export interface IGameObject {
     field: Field;
 
     onClick(): void;
+    onOver(): void;
 
     render(ctx: CanvasRenderingContext2D): void;
 

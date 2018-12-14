@@ -10,6 +10,8 @@ canvas.width = GameConfig.CanvasWidth;
 canvas.height = GameConfig.CanvasHeight;
 canvas.classList.add('game-display');
 
+
+
 const ctx = canvas.getContext('2d');
 if (ctx == null) {
     throw Error("PNH");
@@ -23,6 +25,18 @@ sprite.onload = () => {
     GameObjectFactory.sprite = sprite;
 
     const game = new Game(0);
+
+    canvas.addEventListener('mousedown', function(event) {
+        var x = event.pageX - canvas.offsetLeft,
+            y = event.pageY - canvas.offsetTop;
+        game.mouseClick(x, y);
+    }, false);
+    canvas.addEventListener('mouseover', function(event) {
+        var x = event.pageX - canvas.offsetLeft,
+            y = event.pageY - canvas.offsetTop;
+        game.mouseOver(x, y);
+    }, false);
+
     ctx.translate(GameConfig.GameFieldTranslateX, GameConfig.GameFieldTranslateY);
     let prevTime = Date.now();
     let times: Array<number> = [];
