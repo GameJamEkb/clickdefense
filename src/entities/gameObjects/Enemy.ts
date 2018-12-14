@@ -29,7 +29,8 @@ export class Enemy implements IGameObject, IMover {
                 public destination: Cell,
                 public goldCount: number,
                 public runAway: boolean,
-                public startPosition: Cell
+                public startPosition: Cell,
+                public speed: number
     ) { }
 
     get cell(): Cell {
@@ -78,13 +79,13 @@ export class Enemy implements IGameObject, IMover {
     }
 
     update(elapsed: number): void {
-        if (this.hp < 0){
+        if (this.hp <= 0){
             this.field.killEnemy()
         }
         this.animation.update(elapsed);
-        if (this.position.dec(getPositionByCell(this.destination, this.field)).length() < 2) {
+        if (this.position.dec(getPositionByCell(this.destination, this.field)).length() < GameConfig.PathFinderPixelDelta) {
             if (this.runAway) {
-                this.hp = -100;
+                this.hp = 0;
                 this.field.killEnemy();
             } else {
                 this.goldCount += this.field.stealGold(this.hp + this.goldCount);
@@ -93,11 +94,11 @@ export class Enemy implements IGameObject, IMover {
             }
         }
 
-        if (this.nextPoint.dec(this.position).length() < 2) {
+        if (this.nextPoint.dec(this.position).length() < GameConfig.PathFinderPixelDelta) {
             this.setNextPoint();
         } else {
             const direction = this.nextPoint.dec(this.position).normalize();
-            this.position = this.position.add(direction.mult(2));
+            this.position = this.position.add(direction.mult(this.speed));
         }
     }
 }

@@ -3,6 +3,7 @@ import {Tower} from "../gameObjects/Tower";
 import {IReloader} from "../interfaces/IReloader";
 import {IGameObject} from "../interfaces/IGameObject";
 import {Rectangle} from "../base/Rectangle";
+import {GameConfig} from "../../constants/GameConfig";
 
 export class SplashTower extends Tower implements IGameObject, IReloader {
 
@@ -21,6 +22,8 @@ export class SplashTower extends Tower implements IGameObject, IReloader {
     }
 
     render(ctx: CanvasRenderingContext2D): void {
+        ctx.drawImage(GameConfig.sprite, 32 * 2, 64 * 2, 32, 32, this.position.x - 16, this.position.y - 16, 32, 32)
+
         fillCircle(ctx, this.position.x, this.position.y, 15, "brown");
     }
 

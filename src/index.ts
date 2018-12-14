@@ -1,6 +1,6 @@
 import './style.css';
 import {Game} from "./Game";
-import {GameObjectFactory} from "./entities/factories/GameObjectFactory";
+import {TowerFactory} from "./entities/factories/TowerFactory";
 import {GameConfig} from "./constants/GameConfig";
 import {GameUI} from "./ui/GameUI";
 
@@ -22,7 +22,7 @@ document.body.appendChild(canvas);
 const sprite = new Image(10, 10);
 sprite.src = '/public/images/sprites.png';
 sprite.onload = () => {
-    GameObjectFactory.sprite = sprite;
+    GameConfig.sprite = sprite;
 
     const game = new Game(0);
 
@@ -43,9 +43,13 @@ sprite.onload = () => {
     let fps;
     const loop = () => {
         // @ts-ignore
-        ctx.clearRect(
-            -GameConfig.GameFieldTranslateX, -GameConfig.GameFieldTranslateY,
-            canvas.width - GameConfig.GameFieldTranslateX, canvas.height - GameConfig.GameFieldTranslateY
+        ctx.fillStyle = "black";
+
+        ctx.fillRect(
+            -GameConfig.GameFieldTranslateX,
+            -GameConfig.GameFieldTranslateY,
+            canvas.width - GameConfig.GameFieldTranslateX,
+            canvas.height - GameConfig.GameFieldTranslateY + 10,
         );
 
         const currentTime = Date.now();

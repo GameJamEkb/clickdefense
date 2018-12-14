@@ -4,6 +4,7 @@ import {Field} from "../../Field";
 import {ICollider} from "../interfaces/ICollider";
 import {fillCircle} from "../../utils/render";
 import {randomInt} from "../../utils/nums";
+import {GameConfig} from "../../constants/GameConfig";
 
 export class Gold implements IGameObject {
     deltas: Array<Vector> = []
@@ -33,6 +34,7 @@ export class Gold implements IGameObject {
     }
 
     render(ctx: CanvasRenderingContext2D): void {
+        ctx.drawImage(GameConfig.sprite, 32 * 2, 64 * 2, 32, 32, this.position.x - 16, this.position.y - 16, 32, 32)
         this.deltas.forEach(
             delta => fillCircle(ctx, this.position.x + delta.x, this.position.y + delta.y, 5, "yellow", true)
 

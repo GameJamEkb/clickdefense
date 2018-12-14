@@ -17,4 +17,8 @@ export class GameConfig {
     static ShowEnemiesHitBars: boolean = true;
     static ShowTowersReloadBars: boolean = true;
 
+    static sprite: HTMLImageElement;
+
+    static PathFinderPixelDelta: number = 2;
+
 }
