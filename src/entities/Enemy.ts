@@ -1,23 +1,27 @@
-import {GameObject} from "./base/GameObject";
+import {IGameObject} from "./interfaces/IGameObject";
 import {Vector} from "./base/Vector";
 import {IMover} from "./interfaces/IMover";
-import {bfs, cellByPostion} from "../utils";
+import {bfs, getCellByPostion} from "../utils/positions";
 import {Cell} from "./base/Cell";
 import {Field} from "../Field";
 import {Rectangle} from "./base/Rectangle";
+import {ICollider} from "./interfaces/ICollider";
 
-export class Enemy extends GameObject implements IMover {
+export class Enemy implements IGameObject, IMover {
     nextPoint: Vector = this.position;
     destination: Cell = this.position;
-
-    constructor(position: Vector, field: Field) {
-        super(position, 10, true, field, new Rectangle(10, 10));
-    }
-
     private point?: Vector;
 
+
+    constructor(public collider: ICollider,
+                public field: Field,
+                public passability: boolean,
+                public position: Vector,
+                public hp: number) { }
+
+
     get cell(): Cell {
-        return cellByPostion(this.position, this.field);
+        return getCellByPostion(this.position, this.field);
     }
 
     findNextPoint(): Vector {
@@ -50,4 +54,6 @@ export class Enemy extends GameObject implements IMover {
         this.destination = this.field.goldPosition;
         this.nextPoint = this.findNextPoint();
     }
+
+
 }

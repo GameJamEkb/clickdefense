@@ -1,12 +1,12 @@
-import { Collider } from "./Collider";
+import {ICollider} from "../interfaces/ICollider";
+import {IGameObject} from "../interfaces/IGameObject";
+import {Vector} from "./Vector";
 
-export class Rectangle extends Collider {
-    width: number;
-    height: number;
+export class Rectangle implements ICollider{
+    constructor( public width: number,
+                 public height: number) { }
 
-    constructor(width: number, height: number) {
-        super();
-        this.width = width;
-        this.height = height;
+    checkCollision(position: Vector, another: IGameObject): boolean {
+        return false;
     }
 }
