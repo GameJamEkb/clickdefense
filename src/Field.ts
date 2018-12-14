@@ -5,6 +5,7 @@ import {Enemy} from "./entities/Enemy";
 import {cellByPostion} from "./utils";
 import {pifagor} from "./utils";
 import {EmptyCell} from "./entities/EmptyCell";
+import {Cell} from "./entities/base/Cell";
 
 export class Field {
     objects: Array<Array<GameObject>>;
@@ -19,7 +20,7 @@ export class Field {
         this.width = width;
         this.height = height;
         this.cellSize = cellSize;
-        this.goldPosition = new Vector(0,0);
+        this.goldPosition = new Cell(5,5);
         this.objects = Array.from({length: this.width})
             .map((_, x) => Array.from({length: this.height})
                 .map((_, y) => new EmptyCell(x, y, this)));
