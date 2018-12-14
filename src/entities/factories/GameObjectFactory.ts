@@ -10,6 +10,7 @@ import {BaseTower} from "../towers/BaseTower";
 import Base = Mocha.reporters.Base;
 import {Spawner} from "../gameObjects/Spawner";
 import {SplashTower} from "../towers/SplashTower";
+import {TrapTower} from "../towers/TrapTower";
 
 export class GameObjectFactory {
     static sprite: HTMLImageElement;
@@ -81,6 +82,22 @@ export class GameObjectFactory {
         )
     }
 
+    static createTrapTower(cell: Cell, field: Field): BaseTower {
+        return new TrapTower(
+            new Rectangle(10, 30),
+            field,
+            true,
+            getPositionByCell(cell, field),
+            5,
+            5,
+            1,
+            110,
+            10,
+            1,
+            true
+        )
+    }
+
     static createSpawner(cell: Cell, field: Field): Spawner {
         return new Spawner(
             new Rectangle(10, 30),
@@ -89,8 +106,8 @@ export class GameObjectFactory {
             getPositionByCell(cell, field),
             100,
             100,
-            0.01,
-            0.01,
+            1,
+            1,
             true
         )
     }
