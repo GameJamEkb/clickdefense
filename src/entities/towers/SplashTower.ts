@@ -1,7 +1,8 @@
-import {fillCircle} from "../../utils/render";
+import {drawRectangleCollider, fillCircle} from "../../utils/render";
 import {Tower} from "../gameObjects/Tower";
 import {IReloader} from "../interfaces/IReloader";
 import {IGameObject} from "../interfaces/IGameObject";
+import {Rectangle} from "../base/Rectangle";
 
 export class SplashTower extends Tower implements IGameObject, IReloader {
 
@@ -21,6 +22,10 @@ export class SplashTower extends Tower implements IGameObject, IReloader {
 
     render(ctx: CanvasRenderingContext2D): void {
         fillCircle(ctx, this.position.x, this.position.y, 15, "brown");
+    }
+
+    drawCollider(ctx: CanvasRenderingContext2D): void {
+        drawRectangleCollider(ctx, this.position, this.collider as Rectangle);
     }
 
     onClick(): void {

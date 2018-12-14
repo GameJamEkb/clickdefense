@@ -27,10 +27,4 @@ export class EmptyCell implements IGameObject {
 
     update(elapsed: number): void {
     }
-
-
-
-
-
-
 }
