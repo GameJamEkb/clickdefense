@@ -11,11 +11,11 @@ export class Tower extends GameObject {
 
 
     constructor(x: number, y: number, field: Field) {
-        super(new Vector(x, y), Tower.BaseHp, false, field, new Ellipse(5, 5));
+            super(new Vector(x, y), Tower.BaseHp, false, field, new Ellipse(5, 5));
     }
 
     render(ctx: CanvasRenderingContext2D): void {
-        drawCircle(ctx, this.position.x, this.position.y, 5);
+        drawCircle(ctx, this.position.x, this.position.y, 20);
     }
 
     attackEnemy(): void {
