@@ -4,6 +4,8 @@ import {Field} from "./Field";
 
 export class Player {
 
+    startGoldCount: Array<number>;
+
     private _gold: number;
 
 
@@ -13,6 +15,7 @@ export class Player {
         public game: Game
     ) {
         this._gold = gold;
+        this.startGoldCount = Array.from({length: 100});
     }
 
     get gold(): number {
@@ -30,8 +33,12 @@ export class Player {
         this.game.onLose();
     }
 
-    onLevelComplete(field: Field) {
+    onLevelStart(field: Field) {
 
+    }
+
+    onLevelComplete(field: Field) {
+        this.startGoldCount[field.levelId] = Math.max(this.startGoldCount[field.levelId] | 0, GameConfig.StartGold, this.gold);
     }
 
 }
