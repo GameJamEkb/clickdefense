@@ -5,7 +5,7 @@ import {IGameObject} from "../interfaces/IGameObject";
 import {GameConfig} from "../../constants/GameConfig";
 import {Rectangle} from "../base/Rectangle";
 
-export class BaseTower extends Tower implements IGameObject, IReloader {
+export class PoisonTower extends Tower implements IGameObject, IReloader {
 
     tryAttack(): boolean {
         if (this.isRealoded()) {

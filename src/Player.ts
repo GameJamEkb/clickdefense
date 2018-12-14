@@ -9,6 +9,8 @@ export class Player extends EventEmitter {
 
     private _gold: number;
 
+    score: number;
+
 
     constructor(
         public name: string,
@@ -17,6 +19,7 @@ export class Player extends EventEmitter {
     ) {
         super();
         this._gold = gold;
+        this.score = gold;
         setTimeout(() => {
             this.emit('goldChange', gold);
         });
@@ -32,7 +35,9 @@ export class Player extends EventEmitter {
         if (value <= 0) {
             this.onDie();
         }
+        this.score += Math.max(0, value - this._gold);
         this._gold = value;
+        console.log(this.score);
     }
 
     onDie() {

@@ -15,7 +15,7 @@ import {GameConfig} from "../../constants/GameConfig";
 export class Enemy implements IGameObject, IMover {
     nextPoint: Vector = this.position;
     private point?: Vector;
-
+    finished: boolean = false;
 
     constructor(public collider: ICollider,
                 public field: Field,
@@ -30,7 +30,8 @@ export class Enemy implements IGameObject, IMover {
                 public goldCount: number,
                 public runAway: boolean,
                 public startPosition: Cell,
-                public speed: number
+                public speed: number,
+                public complexity: number
     ) { }
 
     get cell(): Cell {
@@ -55,7 +56,7 @@ export class Enemy implements IGameObject, IMover {
     }
 
     onClick(): void {
-        this.gotHit(10)
+        this.gotHit(25);
         console.log("AAaaaa")
     }
 
@@ -86,6 +87,7 @@ export class Enemy implements IGameObject, IMover {
         if (this.position.dec(getPositionByCell(this.destination, this.field)).length() < GameConfig.PathFinderPixelDelta) {
             if (this.runAway) {
                 this.hp = 0;
+                this.finished = true;
                 this.field.killEnemy();
             } else {
                 this.goldCount += this.field.stealGold(this.hp + this.goldCount);

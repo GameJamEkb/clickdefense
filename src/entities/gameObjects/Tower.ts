@@ -24,8 +24,12 @@ export abstract class Tower implements IGameObject, IReloader {
 
     abstract tryAttack(): boolean;
     abstract render(ctx: CanvasRenderingContext2D): void;
-    abstract onClick(): void;
-    abstract drawCollider(ctx: CanvasRenderingContext2D): void;
+    onClick(): void {
+        this.timeout -= 1
+    }
+    drawCollider(ctx: CanvasRenderingContext2D): void {
+        drawRectangleCollider(ctx, this.position, this.collider as Rectangle);
+    }
 
     update(elapsed: number): void {
         this.timeout -= elapsed;

@@ -16,6 +16,10 @@ import {randomInt} from "../../utils/nums";
 import {Circle} from "../base/Circle";
 import {Gold} from "../gameObjects/Gold";
 import {GameConfig} from "../../constants/GameConfig";
+import {FastSplashTower} from "../towers/FastSplashTower";
+import {MineTower} from "../towers/MineTower";
+import {PoisonTower} from "../towers/PoisonTower";
+import {SlowingTower} from "../towers/SlowingTower";
 
 export class TowerFactory {
     static createBaseTower(cell: Cell, field: Field): BaseTower {
@@ -26,26 +30,10 @@ export class TowerFactory {
             getPositionByCell(cell, field),
             100,
             100,
-            1,
-            40,
+            2,
             50,
-            1,
-            true
-        )
-    }
-
-    static createSplashTower(cell: Cell, field: Field): BaseTower {
-        return new SplashTower(
-            new Rectangle(32, 32, 0, 0),
-            field,
-            false,
-            getPositionByCell(cell, field),
-            100,
-            100,
-            0.4,
-            110,
-            50,
-            0.4,
+            3 * 32 - 16,
+            2,
             true
         )
     }
@@ -58,13 +46,94 @@ export class TowerFactory {
             getPositionByCell(cell, field),
             5,
             5,
-            1,
-            110,
-            10,
-            1,
+            5,
+            200,
+            1 * 32 - 16,
+            5,
             true
         )
     }
+
+    static createSplashTower(cell: Cell, field: Field): BaseTower {
+        return new SplashTower(
+            new Rectangle(32, 32, 0, 0),
+            field,
+            false,
+            getPositionByCell(cell, field),
+            100,
+            100,
+            4,
+            35,
+            3 * 32 - 16,
+            4,
+            true
+        )
+    }
+
+    static createFastSplashTower(cell: Cell, field: Field): BaseTower {
+        return new FastSplashTower(
+            new Rectangle(32, 32, 0, 0),
+            field,
+            false,
+            getPositionByCell(cell, field),
+            100,
+            100,
+            0.5,
+            5,
+            2 * 32 - 16,
+            0.5,
+            true
+        )
+    }
+
+    static createMineTower(cell: Cell, field: Field): BaseTower {
+        return new MineTower(
+            new Rectangle(32, 32, 0, 0),
+            field,
+            true,
+            getPositionByCell(cell, field),
+            3,
+            3,
+            3,
+            250,
+            32,
+            10,
+            true
+        )
+    }
+
+    static createPoisonTowerTower(cell: Cell, field: Field): BaseTower {
+        return new PoisonTower(
+            new Rectangle(32, 32, 0, 0),
+            field,
+            true,
+            getPositionByCell(cell, field),
+            100,
+            100,
+            3,
+            3,
+            2 * 32 - 16,
+            3,
+            true
+        )
+    }
+
+    static createSlowingTower(cell: Cell, field: Field): BaseTower {
+        return new SlowingTower(
+            new Rectangle(32, 32, 0, 0),
+            field,
+            true,
+            getPositionByCell(cell, field),
+            100,
+            100,
+            3,
+            0.3,
+            2 * 32 - 16,
+            3,
+            true
+        )
+    }
+
 
     static createTowerById(id: string, cell: Cell, field: Field): BaseTower {
         switch (id) {

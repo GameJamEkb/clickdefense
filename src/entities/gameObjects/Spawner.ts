@@ -8,6 +8,10 @@ import {TowerFactory} from "../factories/TowerFactory";
 import {EnemiesFactory} from "../factories/EnemiesFactory";
 import {GameConfig} from "../../constants/GameConfig";
 
+export enum EnemiesEnum {
+    Stick, Ork, Skelet, Slime
+}
+
 export class Spawner implements IGameObject, IReloader {
     constructor(public collider: ICollider,
                 public field: Field,
@@ -17,7 +21,9 @@ export class Spawner implements IGameObject, IReloader {
                 public maxHp: number,
                 public timeout: number,
                 public reloadTime: number,
-                public reloadBar: boolean)
+                public reloadBar: boolean,
+                public enemyType: EnemiesEnum
+                )
     { }
 
     onClick(): void {
@@ -33,7 +39,21 @@ export class Spawner implements IGameObject, IReloader {
     }
 
     spawnEnemy() {
-        this.field.addEnemy(EnemiesFactory.createOrk(this.position, this.field));
+        switch (this.enemyType) {
+            case EnemiesEnum.Stick:
+                this.field.addEnemy(EnemiesFactory.createBlueStick(this.position, this.field));
+                return;
+            case EnemiesEnum.Ork:
+                this.field.addEnemy(EnemiesFactory.createOrk(this.position, this.field));
+                return;
+            case EnemiesEnum.Skelet:
+                this.field.addEnemy(EnemiesFactory.createSkelet(this.position, this.field));
+                return;
+            case EnemiesEnum.Slime:
+                this.field.addEnemy(EnemiesFactory.createSlime(this.position, this.field));
+                return;
+        }
+
     }
 
     update(elapsed: number): void {

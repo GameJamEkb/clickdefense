@@ -43,6 +43,9 @@ export class Field {
 
     killEnemy()
     {
+        this.enemies
+            .filter(enemy => enemy.hp <= 0 && !enemy.finished)
+            .forEach(enemy => this.player.gold += enemy.goldCount);
         this.enemies = this.enemies.filter(enemy => enemy.hp > 0);
     }
 

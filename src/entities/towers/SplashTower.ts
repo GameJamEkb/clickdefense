@@ -27,15 +27,5 @@ export class SplashTower extends Tower implements IGameObject, IReloader {
         fillCircle(ctx, this.position.x, this.position.y, 15, "green");
     }
 
-    drawCollider(ctx: CanvasRenderingContext2D): void {
-        drawRectangleCollider(ctx, this.position, this.collider as Rectangle);
-    }
-
-    onClick(): void {
-        this.tryAttack()
-    }
-    onOver(): void {
-        super.onOver();
-    }
 
 }

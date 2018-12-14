@@ -9,6 +9,7 @@ import {GameObjectsFactory} from "./entities/factories/GameObjectsFactory";
 import {getCellByPostion} from "./utils/positions";
 import {BaseTower} from "./entities/towers/BaseTower";
 import {EmptyCell} from "./entities/gameObjects/EmptyCell";
+import {EnemiesEnum} from "./entities/gameObjects/Spawner";
 
 export class Game {
     field: Field;
@@ -52,8 +53,16 @@ export class Game {
                     this.field.addObject(GameObjectsFactory.createRock(cell, this.field));
                 } else if (line.charAt(j) == "T") {
                     this.field.addObject(TowerFactory.createBaseTower(cell , this.field));
+                } else if (line.charAt(j) == "1") {
+                    this.field.addObject(GameObjectsFactory.createSpawner(cell, this.field, EnemiesEnum.Skelet));
+                } else if (line.charAt(j) == "2") {
+                    this.field.addObject(GameObjectsFactory.createSpawner(cell, this.field, EnemiesEnum.Ork));
+                } else if (line.charAt(j) == "3") {
+                    this.field.addObject(GameObjectsFactory.createSpawner(cell, this.field, EnemiesEnum.Slime));
+                } else if (line.charAt(j) == "4") {
+                    this.field.addObject(GameObjectsFactory.createSpawner(cell, this.field, EnemiesEnum.Stick));
                 } else if (line.charAt(j) == "S") {
-                    this.field.addObject(GameObjectsFactory.createSpawner(cell, this.field));
+                    this.field.addObject(GameObjectsFactory.createSmartSpawner(cell, this.field));
                 } else if (line.charAt(j) == "O") {
                     this.field.addObject(TowerFactory.createSplashTower(cell, this.field));
                 } else if (line.charAt(j) == "L") {
