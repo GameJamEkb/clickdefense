@@ -2,6 +2,7 @@ import {GameObject} from "./base/GameObject";
 import {Vector} from "./base/Vector";
 import {Field} from "../Field"
 import {Ellipse} from "./base/Ellipse";
+import {drawCircle} from "../utils/Render";
 
 export class Tower extends GameObject {
     private static BaseHp = 100;
@@ -13,8 +14,8 @@ export class Tower extends GameObject {
         super(new Vector(x, y), Tower.BaseHp, false, field, new Ellipse(5, 5));
     }
 
-    render(obj: GameObject, ctx: CanvasRenderingContext2D): void {
-        drawCircle(ctx, obj.position.x, obj.position.y, 5);
+    render(ctx: CanvasRenderingContext2D): void {
+        drawCircle(ctx, this.position.x, this.position.y, 5);
     }
 
     attackEnemy(): void {
