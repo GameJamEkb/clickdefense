@@ -62,7 +62,10 @@ export class Field {
             line.forEach(x => x.render(ctx))
         );
 
+        this.enemies.sort((a, b) => a.position.y - b.position.y);
+
         this.enemies.forEach(enemy => enemy.render(ctx));
+
         this.enemies.forEach(enemy => HpBar.render(ctx, enemy, this));
 
         this.objects.forEach(line =>
