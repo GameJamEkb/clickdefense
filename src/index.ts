@@ -14,9 +14,13 @@ if (ctx == null) {
 document.body.appendChild(canvas);
 const game = new Game(0);
 
-const draw = () => {
-    requestAnimationFrame(draw);
+
+const loop = () => {
+    // @ts-ignore
+    var elapsed = (new Date() - prevTime) / 1000;
+    requestAnimationFrame(loop);
     game.render(ctx);
 };
 
-draw();
+var prevTime = new Date();
+loop();
