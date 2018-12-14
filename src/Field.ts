@@ -95,13 +95,9 @@ export class Field {
 
     }
 
-    // TODO
     stealGold(goldPower: number) {
+        this.player.gold -= goldPower;
         return goldPower;
-    }
-    // TODO
-    getClosestSpawnerCell(position: Vector): Cell {
-        return new Cell(0, 0);
     }
 
     update(elapsed: number): void {

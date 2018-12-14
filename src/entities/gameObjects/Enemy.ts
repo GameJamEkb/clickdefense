@@ -29,6 +29,7 @@ export class Enemy implements IGameObject, IMover {
                 public destination: Cell,
                 public goldCount: number,
                 public runAway: boolean,
+                public startPosition: Cell
     ) { }
 
     get cell(): Cell {
@@ -88,7 +89,7 @@ export class Enemy implements IGameObject, IMover {
             } else {
                 this.goldCount += this.field.stealGold(this.hp + this.goldCount);
                 this.runAway = true;
-                this.destination = this.field.getClosestSpawnerCell(this.position);
+                this.destination = this.startPosition;
             }
         }
 

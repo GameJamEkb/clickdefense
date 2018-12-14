@@ -1,7 +1,7 @@
 import {EmptyCell} from "../gameObjects/EmptyCell";
 import {Rectangle} from "../base/Rectangle";
 import {Cell} from "../base/Cell";
-import {getPositionByCell} from "../../utils/positions";
+import {getCellByPostion, getPositionByCell} from "../../utils/positions";
 import {Field} from "../../Field";
 import {Rock} from "../gameObjects/Rock";
 import {Enemy} from "../gameObjects/Enemy";
@@ -69,7 +69,8 @@ export class GameObjectFactory {
             new Animation(368 * 2, 204 * 2, 32, 0, 0.2, 3, randomInt(0, 4)),
             field.goldPosition,
             10,
-            false
+            false,
+            getCellByPostion(vector, field)
         )
     }
 
