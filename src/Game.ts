@@ -20,6 +20,8 @@ export class Game {
                     this.field.addObject(new EmptyCell(j * this.field.cellSize, i* this.field.cellSize, this.field));
                 } else if (line.charAt(j) == "R") {
                     this.field.addObject(new Rock(j * this.field.cellSize, i* this.field.cellSize, this.field));
+                } else if (line.charAt(j) == "T") {
+                    this.field.addObject(new Tower(j * this.field.cellSize, i* this.field.cellSize, this.field));
                 };
             };
         });
