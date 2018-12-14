@@ -17,13 +17,6 @@ class Enemy extends GameObject implements IMover {
         this.destination = this.field.goldPosition;
     }
 
-    get cell(): Vector {
-        return new Vector(
-            Math.floor(this.position.x / this.field.cellSize),
-            Math.floor(this.position.y / this.field.cellSize)
-        )
-    }
-
     findNextPoint(): Vector {
         this.point = undefined;
         return new Vector

@@ -1,6 +1,7 @@
 import {GameObject} from "./entities/base/GameObject";
 import {Vector} from "./entities/base/Vector";
 import {Rock} from "./entities/Rock";
+import {cellByPostion} from "./utils";
 
 export class Field {
     objects: Array<Array<GameObject>>;
@@ -18,8 +19,7 @@ export class Field {
     }
 
     addObject(gameObject: GameObject) {
-        if (gameObject instanceof Rock) {
-
-        }
+        var cell = cellByPostion(gameObject.position, this);
+        this.objects[cell.x][cell.y] = gameObject;
     }
 }
