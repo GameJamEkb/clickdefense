@@ -12,10 +12,11 @@ export class Animation {
         public dx: number,
         public dy: number,
         public rate: number,
-        public count: number
+        public count: number,
+        public initialFrame: number = 0
     ) {
         this.ticker = rate;
-        this.counter = 0;
+        this.counter = this.initialFrame;
     }
 
     update(elapsed: number) {

@@ -33,6 +33,8 @@ sprite.onload = () => {
 
     ctx.translate(GameConfig.GameFieldTranslateX, GameConfig.GameFieldTranslateY);
     let prevTime = Date.now();
+    let times: Array<number> = [];
+    let fps;
     const loop = () => {
         // @ts-ignore
         ctx.clearRect(-GameConfig.GameFieldTranslateX, -GameConfig.GameFieldTranslateY, canvas.width - GameConfig.GameFieldTranslateX, canvas.height - GameConfig.GameFieldTranslateY);
@@ -42,6 +44,16 @@ sprite.onload = () => {
         requestAnimationFrame(loop);
         game.render(ctx);
         game.update(elapsed);
+
+        const now = performance.now();
+        while (times.length > 0 && times[0] <= now - 1000) {
+            times.shift();
+        }
+        times.push(now);
+        fps = times.length;
+
+        ctx.fillStyle = 'greenyellow';
+        ctx.fillText('' + fps, 20, 20);
     };
 
     loop();

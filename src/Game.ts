@@ -5,7 +5,6 @@ import {GameObjectFactory} from "./entities/factories/GameObjectFactory";
 import {Player} from "./Player";
 import {Vector} from "./entities/base/Vector";
 import {Cell} from "./entities/base/Cell";
-import {getCellByPostion} from "./utils/positions";
 
 export class Game {
     field: Field;
@@ -22,13 +21,6 @@ export class Game {
         );
         // this.field.addObject(GameObjectFactory.createRock(4, 6, this.field));
         this.loadLevel()
-
-        // Test Rocck TODO: Remove
-        this.field.addObject(GameObjectFactory.createRock(new Cell(4, 6), this.field));
-
-        // Test Enemy TODO: Kill them all
-        this.field.addEnemy(GameObjectFactory.createEnemy(new Vector(30, 30), this.field));
-
     }
 
     render(ctx: CanvasRenderingContext2D) {

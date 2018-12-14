@@ -9,6 +9,7 @@ import {bfs} from "../../utils/bfs";
 import { Animation} from "../../Animation";
 import {drawRectangleCollider} from "../../utils/render";
 import {Rectangle} from "../base/Rectangle";
+import {randomInt} from "../../utils/nums";
 
 export class Enemy implements IGameObject, IMover {
     nextPoint: Vector = this.position;
@@ -27,7 +28,7 @@ export class Enemy implements IGameObject, IMover {
                 public reloadBar: boolean
     ) {
         this.animation = new Animation(
-            368 * 2, 204 * 2, 32, 0, 0.2, 3
+            368 * 2, 48 * 2, 32, 0, 0.2, 3, randomInt(0, 4)
         );
         this.destination = field.goldPosition;
     }
