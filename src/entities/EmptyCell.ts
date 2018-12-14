@@ -20,10 +20,10 @@ export class EmptyCell implements IGameObject {
     }
 
     render(ctx: CanvasRenderingContext2D): void {
-        const size = this.field.cellSize - 6;
+        const size = this.field.cellSize -1;
         ctx.beginPath();
         ctx.fillStyle = 'lightgray';
-        ctx.fillRect(this.position.x + 3, this.position.y + 3,  size, size);
+        ctx.fillRect(this.position.x  - size /2, this.position.y - size / 2,  size, size);
         ctx.closePath();
     }
 

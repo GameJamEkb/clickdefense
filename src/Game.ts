@@ -1,24 +1,33 @@
 import {Field} from "./Field";
 import {GameConfig} from "./constants/GameConfig";
-import {Rock} from "./entities/Rock";
-import {Tower} from "./entities/Tower";
-import {EmptyCell} from "./entities/EmptyCell";
 import {level} from "./levels/level_1";
-import {Enemy} from "./entities/Enemy";
-import {Vector} from "./entities/base/Vector";
 import {GameObjectFactory} from "./entities/factories/GameObjectFactory";
+import {Player} from "./Player";
+import {Vector} from "./entities/base/Vector";
+import {Cell} from "./entities/base/Cell";
+import {getCellByPostion} from "./utils/positions";
 
 export class Game {
     field: Field;
+    player: Player;
 
     constructor(levelNumber: number) {
-        this.field = new Field(GameConfig.WidthInCells, GameConfig.HeightInCells, GameConfig.CellSize);
-        this.loadLevel()
+
         // Test Rocck TODO: Remove
+        this.field = new Field(GameConfig.WidthInCells, GameConfig.HeightInCells, GameConfig.CellSize, levelNumber);
         // this.field.addObject(GameObjectFactory.createRock(4, 6, this.field));
+        this.loadLevel()
+        this.player = new Player(
+            "Гордый Арсений",
+            GameConfig.StartGold,
+            this
+        );
+
+        // Test Rocck TODO: Remove
+        this.field.addObject(GameObjectFactory.createRock(new Cell(4, 6), this.field));
 
         // Test Enemy TODO: Kill them all
-        this.field.addEnemy(GameObjectFactory.createEnemy(30, 30, this.field));
+        this.field.addEnemy(GameObjectFactory.createEnemy(new Vector(30, 30), this.field));
 
     }
 
@@ -34,15 +43,20 @@ export class Game {
         var split_level = level.split("\n");
         split_level.forEach( (line, i)  => {
             for(var j=0; j<=19; j++) {
+                // var cell = getCellByPostion( new Vector(j,i) ,this.field)
+                var cell = new Cell(j,i)
                 if (line.charAt(j) == "_"){
-                    this.field.addObject(GameObjectFactory.createEmptyCell(j, i, this.field));
+                    this.field.addObject(GameObjectFactory.createEmptyCell(cell, this.field));
                 } else if (line.charAt(j) == "R") {
-                    this.field.addObject(GameObjectFactory.createRock(j, i, this.field));
+                    this.field.addObject(GameObjectFactory.createRock(cell, this.field));
                 } else if (line.charAt(j) == "T") {
-                    this.field.addObject(GameObjectFactory.createTower(j , i , this.field));
+                    this.field.addObject(GameObjectFactory.createTower(cell , this.field));
                 };
             };
         });
     }
 
+    onLose() {
+        //TODO: End level and restart
+    }
 }

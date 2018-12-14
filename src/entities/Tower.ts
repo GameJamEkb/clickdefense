@@ -19,7 +19,7 @@ export class Tower implements IGameObject {
     }
 
     render(ctx: CanvasRenderingContext2D): void {
-        drawCircle(ctx, this.position.x, this.position.y, 20);
+        drawCircle(ctx, this.position.x, this.position.y, 15);
     }
 
     attackEnemy(): void {

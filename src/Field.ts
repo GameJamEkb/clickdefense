@@ -8,20 +8,19 @@ import {GameObjectFactory} from "./entities/factories/GameObjectFactory";
 export class Field {
     objects: Array<Array<IGameObject>>;
     goldPosition: Vector;
-    width: number;
-    height: number;
-    cellSize: number;
     enemies: Array<Enemy>;
 
 
-    constructor(width: number, height: number, cellSize: number) {
-        this.width = width;
-        this.height = height;
-        this.cellSize = cellSize;
+
+    constructor(public width: number,
+                public height: number,
+                public cellSize: number,
+                public levelId: number)
+    {
         this.goldPosition = new Cell(5,5);
         this.objects = Array.from({length: this.width})
             .map((_, x) => Array.from({length: this.height})
-                .map((_, y) => GameObjectFactory.createEmptyCell(x, y, this)));
+                .map((_, y) => GameObjectFactory.createEmptyCell(new Cell(x, y), this)));
         this.enemies = [];
     }
 
