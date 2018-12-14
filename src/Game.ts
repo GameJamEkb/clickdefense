@@ -61,4 +61,12 @@ export class Game {
     onLose() {
         //TODO: End level and restart
     }
+
+    mouseClick(x:number, y:number){
+        this.field.objects.forEach( line =>{
+            line.forEach( object =>{
+                object.collider
+            })
+        })
+    }
 }

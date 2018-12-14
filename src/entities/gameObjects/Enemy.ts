@@ -81,6 +81,4 @@ export class Enemy implements IGameObject, IMover {
             this.position = this.position.add(direction.mult(2));
         }
     }
-
-
 }
