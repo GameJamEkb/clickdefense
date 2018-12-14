@@ -36,10 +36,10 @@ export class BaseTower implements IGameObject, ITower, IReloader {
         var Reload = this.isRealoded()
         if (Reload) {
             var enemies = this.field.getEnemiesFromRadius(this.position, this.WeaponRadius)
-            enemies.forEach(enemy => {
-                enemy.gotHit(attackPower)
-            });
-            this.startReload()
+            if (enemies.length) {
+                enemies[0].gotHit(attackPower)
+                this.startReload()
+            }
         };
     }
 
@@ -49,9 +49,7 @@ export class BaseTower implements IGameObject, ITower, IReloader {
 
     update(elapsed: number): void {
         this.timeout -= elapsed;
-        console.log(this.timeout)
         this.attackEnemy(this.AttackPower)
-
     }
 
     attack(): boolean {
