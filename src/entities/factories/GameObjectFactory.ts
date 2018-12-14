@@ -10,6 +10,7 @@ import {BaseTower} from "../towers/BaseTower";
 import Base = Mocha.reporters.Base;
 import {Spawner} from "../gameObjects/Spawner";
 import {SplashTower} from "../towers/SplashTower";
+import {TrapTower} from "../towers/TrapTower";
 import {Animation} from "../../Animation";
 import {randomInt} from "../../utils/nums";
 import {Circle} from "../base/Circle";
@@ -100,6 +101,22 @@ export class GameObjectFactory {
             110,
             50,
             0.4,
+            true
+        )
+    }
+
+    static createTrapTower(cell: Cell, field: Field): BaseTower {
+        return new TrapTower(
+            new Rectangle(10, 30),
+            field,
+            true,
+            getPositionByCell(cell, field),
+            5,
+            5,
+            1,
+            110,
+            10,
+            1,
             true
         )
     }

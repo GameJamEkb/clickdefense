@@ -49,6 +49,8 @@ export class Game {
                     this.field.addObject(GameObjectFactory.createSpawner(cell, this.field));
                 } else if (line.charAt(j) == "O") {
                     this.field.addObject(GameObjectFactory.createSplashTower(cell, this.field));
+                } else if (line.charAt(j) == "L") {
+                    this.field.addObject(GameObjectFactory.createTrapTower(cell, this.field));
                 } else if (line.charAt(j) == "G") {
                     this.field.addObject(GameObjectFactory.createGold(cell, this.field));
                     this.field.goldPosition = cell;
@@ -56,13 +58,19 @@ export class Game {
             }
         });
         this.player.onLevelStart(this.field)
-    }
+    };
 
     onLose() {
         //TODO: End level and restart
     }
 
     mouseClick(x:number, y:number){
+        this.field.enemies.forEach( enemy =>{
+                if (enemy.collider.isInside(enemy.position, new Vector(x-GameConfig.GameFieldTranslateX,y-GameConfig.GameFieldTranslateY))){
+                    enemy.onClick();
+                    breake
+                };
+            });
         this.field.objects.forEach( line =>{
             line.forEach( object =>{
                 if (object.collider.isInside(object.position, new Vector(x-GameConfig.GameFieldTranslateX,y-GameConfig.GameFieldTranslateY))){

@@ -45,6 +45,12 @@ export class Field {
         this.enemies = this.enemies.filter(enemy => enemy.hp > 0);
     }
 
+    killTrap(position : Vector)
+    {
+        var cell = getCellByPostion(position, this);
+        this.objects[cell.x][cell.y] = GameObjectFactory.createEmptyCell(cell, this)
+    }
+
     getEnemiesFromRadius(position: Vector, radius: number): Array<Enemy>
     {
         var enemiesInRadius: Array<Enemy> = [];
