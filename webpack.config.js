@@ -1,7 +1,9 @@
 const path = require('path');
+const HTMLPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
-    entry: './src/Game.ts',
+    entry: './src/index.ts',
     devtool: 'inline-source-map',
     module: {
         rules: [
@@ -16,7 +18,14 @@ module.exports = {
         extensions: [ '.tsx', '.ts', '.js' ]
     },
     output: {
-        filename: 'main.js',
+        filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist')
-    }
+    },
+    plugins: [
+        new HTMLPlugin(),
+        new webpack.WatchIgnorePlugin([
+            path.join(__dirname, "node_modules")
+        ])
+    ],
+    mode: "development"
 };
