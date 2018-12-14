@@ -25,6 +25,13 @@ export class Enemy extends GameObject implements IMover {
     onClick(): void {
     }
 
+    gotHit(powerHit: number): void {
+        this.hp =- powerHit
+    }
+
     render(obj: GameObject, ctx: CanvasRenderingContext2D): void {
+    }
+
+    update(elapsed: number): void {
     }
 }
