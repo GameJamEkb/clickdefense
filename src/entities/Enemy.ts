@@ -21,4 +21,10 @@ export class Enemy extends GameObject implements IMover {
         this.point = undefined;
         return new Vector
     }
+
+    onClick(): void {
+    }
+
+    render(obj: GameObject, ctx: CanvasRenderingContext2D): void {
+    }
 }

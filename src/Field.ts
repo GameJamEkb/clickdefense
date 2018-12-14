@@ -20,7 +20,7 @@ export class Field {
         this.cellSize = cellSize;
         this.goldPosition = new Vector(0,0);
         this.objects = Array.from({length: this.width}).map(_ => Array.from({length: this.height}))
-        this.enemies = new Array<Enemy>();
+        this.enemies = [];
     }
 
     addObject(gameObject: GameObject) {
