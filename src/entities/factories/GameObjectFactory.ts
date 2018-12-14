@@ -9,6 +9,7 @@ import {Vector} from "../base/Vector";
 import {ITower} from "../interfaces/ITower";
 import {BaseTower} from "../towers/BaseTower";
 import Base = Mocha.reporters.Base;
+import {Spawner} from "../gameObjects/Spawner";
 
 export class GameObjectFactory {
     static sprite: HTMLImageElement;
@@ -60,6 +61,19 @@ export class GameObjectFactory {
             4,
             50,
             1,
+            true
+        )
+    }
+    static createSpawner(cell: Cell, field: Field): Spawner {
+        return new Spawner(
+            new Rectangle(10, 30),
+            field,
+            true,
+            getPositionByCell(cell, field),
+            100,
+            100,
+            1,
+            5,
             true
         )
     }

@@ -51,7 +51,9 @@ export class Game {
                     this.field.addObject(GameObjectFactory.createRock(cell, this.field));
                 } else if (line.charAt(j) == "T") {
                     this.field.addObject(GameObjectFactory.createTower(cell , this.field));
-                };
+                } else if (line.charAt(j) == "S") {
+                    this.field.addObject(GameObjectFactory.createSpawner(cell, this.field));
+                }
             };
         });
         this.player.onLevelStart(this.field)
