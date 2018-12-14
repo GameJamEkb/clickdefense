@@ -7,7 +7,7 @@ export class Game {
 
     constructor(levelNumber: number) {
 
-        this.field = new Field(GameConfig.WidthInCells, GameConfig.HeightInCells);
+        this.field = new Field(GameConfig.WidthInCells, GameConfig.HeightInCells, GameConfig.CellSize);
 
 
         // Test Rocck TODO: Remove
