@@ -34,6 +34,9 @@ sprite.onload = () => {
 
 
     const gameUI = new GameUI(uiContainer);
+    gameUI.on('towerChange', (id: string) => {
+        game.selectedTower = id
+    });
 
     game.player.on('goldChange', gameUI.onGoldChange.bind(gameUI));
 
@@ -55,7 +58,6 @@ sprite.onload = () => {
     let times: Array<number> = [];
     let fps;
     const loop = () => {
-        // @ts-ignore
         ctx.fillStyle = "black";
 
         ctx.fillRect(
@@ -80,7 +82,7 @@ sprite.onload = () => {
         fps = times.length;
 
         ctx.fillStyle = 'greenyellow';
-        ctx.fillText('' + fps, 20, 20);
+        ctx.fillText('' + fps, 0, 0);
     };
 
     loop();

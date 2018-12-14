@@ -6,10 +6,15 @@ import {Player} from "./Player";
 import {Vector} from "./entities/base/Vector";
 import {Cell} from "./entities/base/Cell";
 import {GameObjectsFactory} from "./entities/factories/GameObjectsFactory";
+import {getCellByPostion} from "./utils/positions";
+import {BaseTower} from "./entities/towers/BaseTower";
+import {EmptyCell} from "./entities/gameObjects/EmptyCell";
 
 export class Game {
     field: Field;
     player: Player;
+
+    selectedTower = 'BaseTower';
 
     constructor(levelNumber: number) {
         this.player = new Player(
@@ -24,6 +29,7 @@ export class Game {
             GameConfig.CellSize,
             levelNumber,
             this.player);
+
         this.loadLevel()
     }
 
@@ -78,6 +84,12 @@ export class Game {
                 };
             });
         });
+
+        const cell = getCellByPostion(new Vector(x, y), this.field);
+        const obj = this.field.objects[cell.x][cell.y];
+        if (obj instanceof EmptyCell) {
+            this.field.addObject(TowerFactory.createTowerById(this.selectedTower, cell, this.field));
+        }
     }
     mouseOver(x:number, y:number){
         this.field.objects.forEach( line =>{

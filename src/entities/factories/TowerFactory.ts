@@ -65,4 +65,12 @@ export class TowerFactory {
             true
         )
     }
+
+    static createTowerById(id: string, cell: Cell, field: Field): BaseTower {
+        switch (id) {
+            case 'Splash': return this.createSplashTower(cell, field);
+            case 'Trap': return this.createTrapTower(cell, field);
+            default: return this.createBaseTower(cell, field);
+        }
+    }
 }

@@ -3,6 +3,9 @@ import {Vector} from "../base/Vector";
 import {Field} from "../../Field";
 import {ICollider} from "../interfaces/ICollider";
 import {randomInt} from "../../utils/nums";
+import {GameObjectsFactory} from "../factories/GameObjectsFactory";
+import {TowerFactory} from "../factories/TowerFactory";
+import {getCellByPostion} from "../../utils/positions";
 
 export class EmptyCell implements IGameObject {
     private readonly hasScull: boolean = false;
@@ -42,7 +45,7 @@ export class EmptyCell implements IGameObject {
         }
 
         if (this.hasBox) {
-            ctx.drawImage(this.sprite, 224 * 2, 202 * 2, 32, 22 * 2, this.position.x - 14, this.position.y - 26, 36, 22 * 2)
+            ctx.drawImage(this.sprite, 224 * 2, 202 * 2, 32, 22 * 2, this.position.x - 18, this.position.y - 26, 36, 22 * 2)
         }
     }
 
