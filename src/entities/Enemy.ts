@@ -56,7 +56,7 @@ export class Enemy implements IGameObject, IMover {
         ctx.beginPath();
         ctx.fillStyle = 'red';
         ctx.fillRect(this.position.x - 15, this.position.y - 15, 30, 30);
-        ctx.drawImage(this.sprite, 0, 0, 10, 10, this.position.x - 16, this.position.y - 16, 32, 32);
+        ctx.drawImage(this.sprite, 0, 0, 10, 10, this.position.x - 16, this.position.y - 16, 30, 30);
         ctx.closePath();
     }
 
