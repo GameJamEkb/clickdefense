@@ -10,7 +10,7 @@ export class ReloadBar {
     static Height = 4;
 
     static render(ctx: CanvasRenderingContext2D, reloadable: IReloader, field: Field) {
-        var life: number = Math.max(reloadable.timeout, 0) / reloadable.reloadTime;
+        var life: number = 1 - (Math.max(reloadable.timeout, 0) / reloadable.reloadTime);
 
         fillRectangle(
             ctx,
