@@ -39,4 +39,7 @@ export abstract class Tower implements IGameObject, IReloader {
     startReload(): void {
         this.timeout = this.reloadTime;
     }
+
+    onOver(): void {
+    }
 }
