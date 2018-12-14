@@ -3,7 +3,7 @@ import {GameObject} from "./base/GameObject";
 import {Vector} from "./base/Vector";
 import {IMover} from "./interfaces/IMover";
 
-class Enemy extends GameObject implements IMover {
+export class Enemy extends GameObject implements IMover {
     destination: Vector;
 
     private point?: Vector;
