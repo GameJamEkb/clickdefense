@@ -1,3 +1,3 @@
-export interface IMovable {
+export interface IMover {
 
 }
