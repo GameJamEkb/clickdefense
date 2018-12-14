@@ -1,3 +1,3 @@
 # clickdefense
 
-npx webpack -w -c webpack.config.js
+Start watcher: npm run build_watch
