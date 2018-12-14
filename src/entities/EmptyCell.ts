@@ -1,7 +1,6 @@
 import {IGameObject} from "./interfaces/IGameObject";
 import {Vector} from "./base/Vector";
 import {Field} from "../Field";
-import {Circle} from "./base/Circle";
 import {ICollider} from "./interfaces/ICollider";
 
 export class EmptyCell implements IGameObject {
@@ -21,7 +20,11 @@ export class EmptyCell implements IGameObject {
     }
 
     render(ctx: CanvasRenderingContext2D): void {
-
+        const size = this.field.cellSize - 6;
+        ctx.beginPath();
+        ctx.fillStyle = 'lightgray';
+        ctx.fillRect(this.position.x + 3, this.position.y + 3,  size, size);
+        ctx.closePath();
     }
 
     update(elapsed: number): void {

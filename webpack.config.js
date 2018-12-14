@@ -32,7 +32,7 @@ module.exports = {
         ])
     ],
     devServer: {
-
+        // publicPath: 'public/',
         watchOptions: {
             ignored: [
                 path.resolve(__dirname, 'dist'),

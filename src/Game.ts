@@ -26,6 +26,13 @@ export class Game {
                 };
             };
         });
+
+        // Test Rocck TODO: Remove
+        this.field.addObject(GameObjectFactory.createRock(4, 6, this.field));
+
+        // Test Enemy TODO: Kill them all
+        this.field.addEnemy(GameObjectFactory.createEnemy(30, 30, this.field));
+
     }
 
     render(ctx: CanvasRenderingContext2D) {
