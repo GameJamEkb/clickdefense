@@ -14,9 +14,17 @@ if (ctx == null) {
 document.body.appendChild(canvas);
 const game = new Game(0);
 
-const draw = () => {
-    requestAnimationFrame(draw);
+
+let prevTime = Date.now();
+const loop = () => {
+    // @ts-ignore
+    ctx.clearRect(0, 0, 640, 480);
+    const currentTime = Date.now();
+    const elapsed = (currentTime - prevTime) / 1000;
+    prevTime = currentTime
+    requestAnimationFrame(loop);
     game.render(ctx);
+    game.update(elapsed);
 };
 
-draw();
+loop();

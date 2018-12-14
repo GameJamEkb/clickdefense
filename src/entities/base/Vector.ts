@@ -32,4 +32,8 @@ export class Vector {
     length() : number {
         return pifagor(this.x, this.y);
     }
+
+    normalize(): Vector {
+        return new Vector(this.x / this.length(), this.y / this.length());
+    }
 }
