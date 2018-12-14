@@ -1,15 +1,16 @@
 import {IGameObject} from "../entities/interfaces/IGameObject";
 import {Cell} from "../entities/base/Cell";
 import {Vector} from "../entities/base/Vector";
+const dx = [1, 0, -1, 0];
+const dy = [0, -1, 0, 1];
 
 function expand(nodes: Array<Array<IGameObject>>, node: Cell): Array<Cell> {
-    const dx = [1, 0, -1, 0];
-    const dy = [0, -1, 0, 1];
     const cells: Array<Cell> = [];
+    const bfsindexes: Array<number> = shuffle([0, 1, 2, 3]);
 
     for (let i = 0; i < dx.length; i++) {
-        const x = node.x + dx[i];
-        const y = node.y + dy[i];
+        const x = node.x + dx[bfsindexes[i]];
+        const y = node.y + dy[bfsindexes[i]];
         const _row = nodes[x];
         if (!_row) {
             continue;
@@ -31,6 +32,15 @@ function hash(x: number, y: number): number {
 function hashCell(cell: Cell): number {
     return hash(cell.x, cell.y);
 }
+
+function shuffle(a: Array<number>) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
 
 
 export function bfs(nodes: Array<Array<IGameObject>>, startNode: Cell, destNode: Cell): Array<Cell> {
