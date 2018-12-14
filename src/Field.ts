@@ -4,6 +4,7 @@ import {Rock} from "./entities/Rock";
 import {Enemy} from "./entities/Enemy";
 import {cellByPostion} from "./utils";
 import {pifagor} from "./utils";
+import {EmptyCell} from "./entities/EmptyCell";
 
 export class Field {
     objects: Array<Array<GameObject>>;
@@ -19,7 +20,9 @@ export class Field {
         this.height = height;
         this.cellSize = cellSize;
         this.goldPosition = new Vector(0,0);
-        this.objects = Array.from({length: this.width}).map(_ => Array.from({length: this.height}))
+        this.objects = Array.from({length: this.width})
+            .map((_, x) => Array.from({length: this.height})
+                .map((_, y) => new EmptyCell(x, y)));
         this.enemies = [];
     }
 
@@ -41,5 +44,13 @@ export class Field {
             }
         });
         return enemiesInRadius
+    }
+
+    render(ctx: CanvasRenderingContext2D): void {
+        this.objects.forEach(line =>
+            line.forEach(x => x.render(ctx))
+        );
+
+        this.enemies.forEach(enemy => enemy.render(ctx));
     }
 }

@@ -14,7 +14,7 @@ export class Tower extends GameObject {
     onClick(): void {
     }
 
-    render(obj: GameObject, ctx: CanvasRenderingContext2D): void {
+    render(ctx: CanvasRenderingContext2D): void {
     }
 
     update(elapsed: number): void {

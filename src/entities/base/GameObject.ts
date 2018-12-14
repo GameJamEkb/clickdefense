@@ -18,7 +18,7 @@ export abstract class GameObject {
 
     abstract onClick(): void;
 
-    abstract render(obj: GameObject, ctx: CanvasRenderingContext2D): void;
+    abstract render(ctx: CanvasRenderingContext2D): void;
 
     abstract update(elapsed: number): void;
 }

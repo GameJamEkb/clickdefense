@@ -13,4 +13,8 @@ export class Game {
         // Test Rocck TODO: Remove
         this.field.addObject(new Rock(4 * this.field.cellSize, 6 * this.field.cellSize));
     }
+
+    render(ctx: CanvasRenderingContext2D) {
+        this.field.render(ctx);
+    }
 }
