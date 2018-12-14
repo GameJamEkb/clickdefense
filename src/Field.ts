@@ -34,12 +34,12 @@ export class Field {
 
     getEnimiesFromRadius(position: Vector, radius: number): Array<Enemy>
     {
-        var enemiesInRadius = new Array<Enemy>();
-        this.enemies.forEach(function (enemy) {
-            if (pifagor(Math.abs(enemy.position.x - position.x), Math.abs(enemy.position.y - position.y)) < radius) {
+        var enemiesInRadius: Array<Enemy> = [];
+        this.enemies.forEach(enemy => {
+            if (position.dec(enemy.position).length() < radius) {
                 enemiesInRadius.push(enemy)
             }
-        })
+        });
         return enemiesInRadius
     }
 }
