@@ -76,7 +76,7 @@ function drawCircle(ctx: CanvasRenderingContext2D, circle: Circle) {
 console.log("Started!");
 
 var canvas = <HTMLCanvasElement>document.getElementById("gameField");
-var myGame = new Game(canvas.width, canvas.height, new SmartCollisionStrategy(), canvas.getContext("2d"));
+var myGame = new Game(canvas.width, canvas.height, new CollisionStrategy(), canvas.getContext("2d"));
 canvas.addEventListener('mousedown', function(event) {
     var x = event.pageX - canvas.offsetLeft,
         y = event.pageY - canvas.offsetTop;
