@@ -5,7 +5,6 @@ import {GameObjectFactory} from "./entities/factories/GameObjectFactory";
 import {Player} from "./Player";
 import {Vector} from "./entities/base/Vector";
 import {Cell} from "./entities/base/Cell";
-import {getCellByPostion} from "./utils/positions";
 
 export class Game {
     field: Field;
@@ -27,7 +26,9 @@ export class Game {
         this.field.addObject(GameObjectFactory.createRock(new Cell(4, 6), this.field));
 
         // Test Enemy TODO: Kill them all
-        this.field.addEnemy(GameObjectFactory.createEnemy(new Vector(30, 30), this.field));
+        setInterval(() => {
+            this.field.addEnemy(GameObjectFactory.createEnemy(new Vector(30, 30), this.field));
+        }, 10000);
 
     }
 
@@ -40,19 +41,19 @@ export class Game {
     }
 
     loadLevel(): void {
-        var split_level = level.split("\n");
-        split_level.forEach( (line, i)  => {
-            for(var j=0; j<=19; j++) {
-                // var cell = getCellByPostion( new Vector(j,i) ,this.field)
-                var cell = new Cell(j,i)
-                if (line.charAt(j) == "_"){
+        const split_level = level.split("\n");
+        split_level.forEach((line, i) => {
+            for (let j = 0; j <= 19; j++) {
+                // const cell = getCellByPostion( new Vector(j,i) ,this.field)
+                const cell = new Cell(j, i);
+                if (line.charAt(j) == "_") {
                     this.field.addObject(GameObjectFactory.createEmptyCell(cell, this.field));
                 } else if (line.charAt(j) == "R") {
                     this.field.addObject(GameObjectFactory.createRock(cell, this.field));
                 } else if (line.charAt(j) == "T") {
-                    this.field.addObject(GameObjectFactory.createTower(cell , this.field));
-                };
-            };
+                    this.field.addObject(GameObjectFactory.createTower(cell, this.field));
+                }
+            }
         });
         this.player.onLevelStart(this.field)
     }

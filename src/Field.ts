@@ -7,6 +7,7 @@ import {GameObjectFactory} from "./entities/factories/GameObjectFactory";
 import {HpBar} from "./entities/ui/HpBar";
 import {ReloadBar} from "./entities/ui/ReloadBar";
 import {IReloader} from "./entities/interfaces/IReloader";
+import {randomInt} from "./utils/nums";
 
 export class Field {
     objects: Array<Array<IGameObject>>;
