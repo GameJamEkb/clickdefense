@@ -9,4 +9,12 @@ export class Rectangle implements ICollider{
     checkCollision(position: Vector, another: IGameObject): boolean {
         return false;
     }
+
+    isInside(position: Vector, point: Vector): boolean {
+        let x1 = position.x;
+        let y1 = position.y;
+        let x2 = x1 + this.width;
+        let y2 = y1 + this.height;
+        return x1 < point.x && point.x < x2 && y1 < point.y && point.y < y2;
+    }
 }

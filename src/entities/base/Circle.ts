@@ -16,4 +16,8 @@ export class Circle implements ICollider {
         return false;
     }
 
+    isInside(position: Vector, point: Vector): boolean {
+        return position.dec(point).length() < this.r;
+    }
+
 }
