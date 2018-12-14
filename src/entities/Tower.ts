@@ -1,17 +1,21 @@
-import {GameObject} from "./base/GameObject";
+import {IGameObject} from "./interfaces/IGameObject";
 import {Vector} from "./base/Vector";
 import {Field} from "../Field"
-import {Ellipse} from "./base/Ellipse";
-import {drawCircle} from "../utils/Render";
+import {drawCircle} from "../utils/render";
+import {ICollider} from "./interfaces/ICollider";
 
-export class Tower extends GameObject {
+export class Tower implements IGameObject {
     private static BaseHp = 100;
     WeaponRadius = 50;
     AttackPower = 4;
 
-
-    constructor(x: number, y: number, field: Field) {
-            super(new Vector(x, y), Tower.BaseHp, false, field, new Ellipse(5, 5));
+    constructor(public collider: ICollider,
+                public field: Field,
+                public passability: boolean,
+                public position: Vector,
+                public hp: number)
+    {
+        this.hp = Tower.BaseHp;
     }
 
     render(ctx: CanvasRenderingContext2D): void {

@@ -6,6 +6,7 @@ import {EmptyCell} from "./entities/EmptyCell";
 import {level} from "./levels/level_1";
 import {Enemy} from "./entities/Enemy";
 import {Vector} from "./entities/base/Vector";
+import {GameObjectFactory} from "./entities/factories/GameObjectFactory";
 
 export class Game {
     field: Field;
@@ -17,21 +18,14 @@ export class Game {
         split_level.forEach( (line, i)  => {
             for(var j=0; j<=19; j++) {
                 if (line.charAt(j) == "_"){
-                    this.field.addObject(new EmptyCell(j * this.field.cellSize, i* this.field.cellSize, this.field));
+                    this.field.addObject(GameObjectFactory.createEmptyCell(j, i, this.field));
                 } else if (line.charAt(j) == "R") {
-                    this.field.addObject(new Rock(j * this.field.cellSize, i* this.field.cellSize, this.field));
-                } else if (line.charAt(j) == "T") {
-                    this.field.addObject(new Tower(j * this.field.cellSize, i* this.field.cellSize, this.field));
+                    this.field.addObject(GameObjectFactory.createRock(j, i, this.field));
+                // } else if (line.charAt(j) == "T") {
+                //     this.field.addObject(new Tower(j * this.field.cellSize, i* this.field.cellSize, this.field));
                 };
             };
         });
-        // Test Rocck TODO: Remove
-        // this.field.addObject(new Rock(4 * this.field.cellSize, 6 * this.field.cellSize, this.field));
-        // this.field.addObject(new Tower(6 * this.field.cellSize, 8 * this.field.cellSize, this.field))
-
-        // Test Enemy TODO: Kill them all
-        this.field.addEnemy(new Enemy(new Vector(20, 20), this.field))
-
     }
 
     render(ctx: CanvasRenderingContext2D) {

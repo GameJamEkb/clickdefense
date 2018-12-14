@@ -1,14 +1,19 @@
-import {GameObject} from "./base/GameObject";
+import {IGameObject} from "./interfaces/IGameObject";
 import {Vector} from "./base/Vector";
-import {drawCircle} from "../utils/Render";
-import {Ellipse} from "./base/Ellipse";
+import {drawCircle} from "../utils/render";
 import {Field} from "../Field";
+import {ICollider} from "./interfaces/ICollider";
 
-export class Rock extends GameObject {
+export class Rock implements IGameObject {
     private static BaseHp = 100;
+    hp: number;
 
-    constructor(x: number, y: number, field: Field) {
-        super(new Vector(x, y), Rock.BaseHp, false, field, new Ellipse(5, 5));
+    constructor(public collider: ICollider,
+                public field: Field,
+                public passability: boolean,
+                public position: Vector)
+    {
+        this.hp = Rock.BaseHp;
     }
 
     onClick(): void {
