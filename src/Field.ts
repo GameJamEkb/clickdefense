@@ -36,6 +36,15 @@ export class Field {
         this.enemies.push(enemy)
     }
 
+    killEnemy()
+    {
+        this.enemies.forEach((enemy, i) => {
+           if (enemy.hp < 0){
+              this.enemies.splice(i, 1)
+           };
+        });
+    }
+
     getEnemiesFromRadius(position: Vector, radius: number): Array<Enemy>
     {
         var enemiesInRadius: Array<Enemy> = [];
