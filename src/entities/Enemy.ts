@@ -10,29 +10,24 @@ export class Enemy extends GameObject implements IMover {
     nextPoint: Vector = this.position;
     destination: Cell = this.position;
 
-    startPosition: Cell;
-
     constructor(position: Vector, field: Field) {
         super(position, 10, true, field, new Rectangle(10, 10));
 
-        this.startPosition = cellByPostion(position, field);
         this.destination = field.goldPosition;
     }
 
-    private point?: Vector;
 
     get cell(): Cell {
         return cellByPostion(this.position, this.field);
     }
 
     findNextPoint(): Cell {
-        this.point = undefined;
         const path = bfs(this.field.objects, this.cell, this.destination);
         if (path.length) {
             return path[0];
         }
 
-        return this.startPosition;
+        return cellByPostion(this.position, this.field);
     }
 
     setNextPoint(): void {
@@ -42,7 +37,6 @@ export class Enemy extends GameObject implements IMover {
             this.field.cellSize / 2 + nextCell.y * this.field.cellSize
         );
     }
-
 
     onClick(): void {
     }
@@ -61,8 +55,9 @@ export class Enemy extends GameObject implements IMover {
     update(elapsed: number): void {
         if (this.nextPoint.dec(this.position).length() < 2) {
             this.setNextPoint();
+        } else {
+            const direction = this.nextPoint.dec(this.position).normalize();
+            this.position = this.position.add(direction.mult(2));
         }
-        const direction = this.nextPoint.dec(this.position).normalize();
-        this.position = this.position.add(direction.mult(2));
     }
 }
