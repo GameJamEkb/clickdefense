@@ -10,4 +10,13 @@ export class Tower extends GameObject {
         super(new Vector(x, y), Tower.BaseHp, false);
         field.getEnimiesFromRadius(this.position,Tower.Radius)
     }
+
+    onClick(): void {
+    }
+
+    render(obj: GameObject, ctx: CanvasRenderingContext2D): void {
+    }
+
+    update(elapsed: number): void {
+    }
 }

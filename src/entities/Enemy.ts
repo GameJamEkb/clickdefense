@@ -27,4 +27,7 @@ export class Enemy extends GameObject implements IMover {
 
     render(obj: GameObject, ctx: CanvasRenderingContext2D): void {
     }
+
+    update(elapsed: number): void {
+    }
 }
