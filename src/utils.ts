@@ -7,7 +7,7 @@ export function pifagor(x: number, y: number) {
 }
 
 
-function cellByPostion(v: Vector, field: Field): Cell {
+export function cellByPostion(v: Vector, field: Field): Cell {
     return new Vector(
         Math.floor(v.x / field.cellSize),
         Math.floor(v.y / field.cellSize)
