@@ -1,3 +1,3 @@
-export interface IRender {
-    
+export interface IRenderer {
+
 }
