@@ -14,4 +14,7 @@ export class Rock extends GameObject {
     render(obj: GameObject, ctx: CanvasRenderingContext2D): void {
         drawCircle(ctx, obj.position.x, obj.position.y, 5);
     }
+
+    update(elapsed: number): void {
+    }
 }

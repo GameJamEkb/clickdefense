@@ -10,15 +10,16 @@ export class Tower extends GameObject {
 
 
     constructor(x: number, y: number, field: Field) {
-        super(new Vector(x, y), Tower.BaseHp, false, field, new Ellipse(5 , 5));
+        super(new Vector(x, y), Tower.BaseHp, false, field, new Ellipse(5, 5));
     }
+
     render(obj: GameObject, ctx: CanvasRenderingContext2D): void {
         drawCircle(ctx, obj.position.x, obj.position.y, 5);
     }
 
-    attackEnemy(): void{
+    attackEnemy(): void {
         var enemies = this.field.getEnemiesFromRadius(this.position, this.AttackPower)
-        enemies.forEach( enemy =>{
+        enemies.forEach(enemy => {
             enemy.gotHit(this.AttackPower)
         })
     }
@@ -30,5 +31,4 @@ export class Tower extends GameObject {
     update(elapsed: number): void {
         this.attackEnemy()
     }
-
 }
