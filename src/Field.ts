@@ -39,11 +39,7 @@ export class Field {
 
     killEnemy()
     {
-        this.enemies.forEach((enemy, i) => {
-           if (enemy.hp < 0){
-              this.enemies.splice(i, 1)
-           };
-        });
+        this.enemies = this.enemies.filter(enemy => enemy.hp > 0);
     }
 
     getEnemiesFromRadius(position: Vector, radius: number): Array<Enemy>

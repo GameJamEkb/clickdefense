@@ -5,8 +5,8 @@ export class GameConfig {
 
     static StartGold: number = 100;
 
-    static GameFieldTranslateX: number = 20;
-    static GameFieldTranslateY: number = 50;
+    static GameFieldTranslateX: number = 10;
+    static GameFieldTranslateY: number = 10;
 
 
     static CanvasWidth: number = 800;

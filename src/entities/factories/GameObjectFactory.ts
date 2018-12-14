@@ -21,7 +21,8 @@ export class GameObjectFactory {
             getPositionByCell(cell, field),
             100,
             100,
-            false
+            false,
+            GameObjectFactory.sprite
         )
     }
 
@@ -33,7 +34,8 @@ export class GameObjectFactory {
             getPositionByCell(cell, field),
             100,
             100,
-            false
+            false,
+            GameObjectFactory.sprite
         )
     }
 
@@ -73,7 +75,7 @@ export class GameObjectFactory {
             100,
             100,
             1,
-            5,
+            1,
             true
         )
     }

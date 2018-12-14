@@ -45,7 +45,7 @@ export class Game {
                 } else if (line.charAt(j) == "S") {
                     this.field.addObject(GameObjectFactory.createSpawner(cell, this.field));
                 }
-            };
+            }
         });
         this.player.onLevelStart(this.field)
     }
