@@ -1,8 +1,9 @@
 import {GameConfig} from "./constants/GameConfig";
 import {Game} from "./Game";
 import {Field} from "./Field";
+import {EventEmitter} from "./utils/event-emitter";
 
-export class Player {
+export class Player extends EventEmitter {
 
     startGoldCount: Array<number>;
 
@@ -14,7 +15,11 @@ export class Player {
         gold: number,
         public game: Game
     ) {
+        super();
         this._gold = gold;
+        setTimeout(() => {
+            this.emit('goldChange', gold);
+        });
         this.startGoldCount = Array.from({length: 100});
     }
 
@@ -23,6 +28,7 @@ export class Player {
     }
 
     set gold(value: number) {
+        this.emit('goldChange', value);
         if (value <= 0) {
             this.onDie();
         }

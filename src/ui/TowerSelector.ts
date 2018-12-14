@@ -15,10 +15,6 @@ export class TowerSelector {
 
     constructor(parent: HTMLElement,) {
         this.container.classList.add('tower-selector-container');
-        const title = document.createElement('div');
-        title.classList.add('tower-selector-title')
-        title.innerText = 'TOWERS';
-        this.container.appendChild(title);
 
         parent.appendChild(this.container);
 

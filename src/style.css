@@ -57,9 +57,12 @@ canvas {
     position: absolute;
     right: 0;
     top: 0;
-    padding: 5px 0;
+    background: url(/public/images/chest.png) no-repeat 10px 10px;
+    background-size: 20px 20px;
+    padding: 10px 0 0 30px ;
+    box-sizing: border-box;
     width: 145px;
-    text-align: center;
+    text-align: left;
 }
 
 .tower-selector {

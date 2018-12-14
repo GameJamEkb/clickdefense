@@ -26,6 +26,19 @@ sprite.onload = () => {
 
     const game = new Game(0);
 
+
+    const uiContainer = document.createElement('div');
+    uiContainer.classList.add('game-ui-container');
+    document.body.appendChild(uiContainer);
+
+
+
+    const gameUI = new GameUI(uiContainer);
+
+    game.player.on('goldChange', gameUI.onGoldChange.bind(gameUI));
+
+
+
     canvas.addEventListener('mousedown', function(event) {
         var x = event.pageX - canvas.offsetLeft,
             y = event.pageY - canvas.offsetTop;
@@ -72,10 +85,3 @@ sprite.onload = () => {
 
     loop();
 };
-
-
-const uiContainer = document.createElement('div');
-uiContainer.classList.add('game-ui-container');
-document.body.appendChild(uiContainer);
-
-new GameUI(uiContainer);
