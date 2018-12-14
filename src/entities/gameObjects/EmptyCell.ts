@@ -1,7 +1,7 @@
-import {IGameObject} from "./interfaces/IGameObject";
-import {Vector} from "./base/Vector";
-import {Field} from "../Field";
-import {ICollider} from "./interfaces/ICollider";
+import {IGameObject} from "../interfaces/IGameObject";
+import {Vector} from "../base/Vector";
+import {Field} from "../../Field";
+import {ICollider} from "../interfaces/ICollider";
 
 export class EmptyCell implements IGameObject {
 

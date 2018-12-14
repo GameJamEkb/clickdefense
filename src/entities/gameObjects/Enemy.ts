@@ -1,14 +1,14 @@
-import {IGameObject} from "./interfaces/IGameObject";
-import {Vector} from "./base/Vector";
-import {IMover} from "./interfaces/IMover";
-import {getCellByPostion} from "../utils/positions";
-import {Cell} from "./base/Cell";
-import {Field} from "../Field";
-import {ICollider} from "./interfaces/ICollider";
-import {bfs} from "../utils/bfs";
-import { Animation} from "../Animation";
-import {drawRectangleCollider} from "../utils/render";
-import {Rectangle} from "./base/Rectangle";
+import {IGameObject} from "../interfaces/IGameObject";
+import {Vector} from "../base/Vector";
+import {IMover} from "../interfaces/IMover";
+import {getCellByPostion} from "../../utils/positions";
+import {Cell} from "../base/Cell";
+import {Field} from "../../Field";
+import {ICollider} from "../interfaces/ICollider";
+import {bfs} from "../../utils/bfs";
+import { Animation} from "../../Animation";
+import {drawRectangleCollider} from "../../utils/render";
+import {Rectangle} from "../base/Rectangle";
 
 export class Enemy implements IGameObject, IMover {
     nextPoint: Vector = this.position;

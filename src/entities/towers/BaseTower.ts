@@ -49,9 +49,7 @@ export class BaseTower implements IGameObject, ITower, IReloader {
 
     update(elapsed: number): void {
         this.timeout -= elapsed;
-        console.log(this.timeout)
         this.attackEnemy(this.AttackPower)
-
     }
 
     attack(): boolean {
