@@ -1,6 +1,6 @@
 import {IGameObject} from "./entities/interfaces/IGameObject";
 import {Vector} from "./entities/base/Vector";
-import {Enemy} from "./entities/Enemy";
+import {Enemy} from "./entities/gameObjects/Enemy";
 import {getCellByPostion} from "./utils/positions";
 import {Cell} from "./entities/base/Cell";
 import {GameObjectFactory} from "./entities/factories/GameObjectFactory";
