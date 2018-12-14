@@ -55,4 +55,23 @@ export class Game {
     onLose() {
         //TODO: End level and restart
     }
+
+    mouseClick(x:number, y:number){
+        this.field.objects.forEach( line =>{
+            line.forEach( object =>{
+                if (object.collider.isInside(object.position, new Vector(x-GameConfig.GameFieldTranslateX,y-GameConfig.GameFieldTranslateY))){
+                    object.onClick();
+                };
+            });
+        });
+    }
+    mouseOver(x:number, y:number){
+        this.field.objects.forEach( line =>{
+            line.forEach( object =>{
+                if (object.collider.isInside(object.position, new Vector(x-GameConfig.GameFieldTranslateX,y-GameConfig.GameFieldTranslateY))){
+                    object.onOver();
+                };
+            });
+        });
+    }
 }

@@ -17,6 +17,10 @@ export class EmptyCell implements IGameObject {
     onClick(): void {
     }
 
+    onOver(): void {
+
+    }
+
     render(ctx: CanvasRenderingContext2D): void {
         const size = this.field.cellSize -1;
         ctx.beginPath();

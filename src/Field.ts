@@ -18,8 +18,6 @@ export class Field {
     goldPosition: Vector;
     enemies: Array<Enemy>;
 
-
-
     constructor(public width: number,
                 public height: number,
                 public cellSize: number,

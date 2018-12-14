@@ -15,8 +15,8 @@ export class BaseTower extends Tower implements IGameObject, IReloader {
                 this.startReload();
                 return true;
             }
-        }
-        return false;
+        };
+        return false
     }
 
     render(ctx: CanvasRenderingContext2D): void {
@@ -26,9 +26,17 @@ export class BaseTower extends Tower implements IGameObject, IReloader {
     drawCollider(ctx: CanvasRenderingContext2D): void {
         drawRectangleCollider(ctx, this.position, this.collider as Rectangle);
     }
-
     onClick(): void {
-        this.tryAttack()
+        // this.attackEnemy(this.attackPower)
+        this.timeout -= 0.3
     }
 
+    onOver(): void {
+
+    }
+
+    update(elapsed: number): void {
+        this.timeout -= elapsed;
+        this.tryAttack()
+    }
 }

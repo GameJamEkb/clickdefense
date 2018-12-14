@@ -21,6 +21,9 @@ export class Spawner implements IGameObject, IReloader {
     onClick(): void {
     }
 
+    onOver(): void {
+    }
+
     render(ctx: CanvasRenderingContext2D): void {
         fillCircle(ctx, this.position.x, this.position.y, 15, "green");
     }
