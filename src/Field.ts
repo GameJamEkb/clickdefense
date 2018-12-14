@@ -35,7 +35,7 @@ export class Field {
         this.enemies.push(enemy)
     }
 
-    getEnimiesFromRadius(position: Vector, radius: number): Array<Enemy>
+    getEnemiesFromRadius(position: Vector, radius: number): Array<Enemy>
     {
         var enemiesInRadius: Array<Enemy> = [];
         this.enemies.forEach(enemy => {
