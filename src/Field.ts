@@ -53,4 +53,8 @@ export class Field {
 
         this.enemies.forEach(enemy => enemy.render(ctx));
     }
+
+    update(elapsed: number): void {
+        this.enemies.forEach(enemy => enemy.update(elapsed));
+    }
 }
