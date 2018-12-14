@@ -36,7 +36,8 @@ export class BaseTower implements IGameObject, ITower, IReloader {
     }
 
     onClick(): void {
-        this.attackEnemy(this.attackPower)
+        // this.attackEnemy(this.attackPower)
+        this.timeout -= 0.3
     }
 
     update(elapsed: number): void {

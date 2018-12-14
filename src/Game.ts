@@ -57,8 +57,10 @@ export class Game {
     mouseClick(x:number, y:number){
         this.field.objects.forEach( line =>{
             line.forEach( object =>{
-                object.collider
-            })
-        })
+                if (object.collider.isInside(object.position, new Vector(x-GameConfig.GameFieldTranslateX,y-GameConfig.GameFieldTranslateY))){
+                    object.onClick();
+                };
+            });
+        });
     }
 }

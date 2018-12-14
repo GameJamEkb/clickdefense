@@ -27,7 +27,6 @@ sprite.onload = () => {
     canvas.addEventListener('mousedown', function(event) {
         var x = event.pageX - canvas.offsetLeft,
             y = event.pageY - canvas.offsetTop;
-        console.log("Click!");
         game.mouseClick(x, y);
     }, false);
 
