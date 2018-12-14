@@ -6,7 +6,8 @@ import {Field} from "../../Field";
 import {Rock} from "../Rock";
 import {Enemy} from "../Enemy";
 import {Vector} from "../base/Vector";
-import {Tower} from "../Tower";
+import {ITower} from "../interfaces/ITower";
+import {BaseTower} from "../towers/BaseTower";
 
 export class GameObjectFactory {
     static sprite: HTMLImageElement;
@@ -37,13 +38,14 @@ export class GameObjectFactory {
             100, GameObjectFactory.sprite
         )
     }
-    static createTower(cell: Cell, field: Field): Tower {
-        return new Tower(
+    static createTower(cell: Cell, field: Field): BaseTower {
+        return new BaseTower(
             new Rectangle(10, 30),
-            field, true,
-            getPositionByCell(cell, field), 100
+            field,
+            false,
+            getPositionByCell(cell, field),
+            BaseTower.BaseHp
         )
-        // return new Enemy(new Vector(x, y), 10, field, GameObjectFactory.sprite);
     }
 
 }
