@@ -67,9 +67,13 @@ export class Enemy implements IGameObject, IMover {
         ctx.drawImage(this.sprite, frame.x, frame.y, 32, 40, this.position.x - 18, this.position.y - 35, 32, 40);
         drawRectangleCollider(ctx, this.position, this.collider as Rectangle);
         ctx.closePath();
+
     }
 
     update(elapsed: number): void {
+        if (this.hp < 0){
+            this.field.killEnemy()
+        }
         this.animation.update(elapsed);
         if (this.nextPoint.dec(this.position).length() < 2) {
             this.setNextPoint();

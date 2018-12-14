@@ -21,15 +21,6 @@ export class Game {
         );
         // this.field.addObject(GameObjectFactory.createRock(4, 6, this.field));
         this.loadLevel()
-
-        // Test Rocck TODO: Remove
-        this.field.addObject(GameObjectFactory.createRock(new Cell(4, 6), this.field));
-
-        // Test Enemy TODO: Kill them all
-        setInterval(() => {
-            this.field.addEnemy(GameObjectFactory.createEnemy(new Vector(30, 30), this.field));
-        }, 10000);
-
     }
 
     render(ctx: CanvasRenderingContext2D) {
@@ -41,19 +32,20 @@ export class Game {
     }
 
     loadLevel(): void {
-        const split_level = level.split("\n");
-        split_level.forEach((line, i) => {
-            for (let j = 0; j <= 19; j++) {
-                // const cell = getCellByPostion( new Vector(j,i) ,this.field)
-                const cell = new Cell(j, i);
-                if (line.charAt(j) == "_") {
+        var split_level = level.split("\n");
+        split_level.forEach( (line, i)  => {
+            for(var j=0; j<=19; j++) {
+                var cell = new Cell(j,i)
+                if (line.charAt(j) == "_"){
                     this.field.addObject(GameObjectFactory.createEmptyCell(cell, this.field));
                 } else if (line.charAt(j) == "R") {
                     this.field.addObject(GameObjectFactory.createRock(cell, this.field));
                 } else if (line.charAt(j) == "T") {
-                    this.field.addObject(GameObjectFactory.createTower(cell, this.field));
+                    this.field.addObject(GameObjectFactory.createTower(cell , this.field));
+                } else if (line.charAt(j) == "S") {
+                    this.field.addObject(GameObjectFactory.createSpawner(cell, this.field));
                 }
-            }
+            };
         });
         this.player.onLevelStart(this.field)
     }

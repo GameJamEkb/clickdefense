@@ -37,6 +37,15 @@ export class Field {
         this.enemies.push(enemy)
     }
 
+    killEnemy()
+    {
+        this.enemies.forEach((enemy, i) => {
+           if (enemy.hp < 0){
+              this.enemies.splice(i, 1)
+           };
+        });
+    }
+
     getEnemiesFromRadius(position: Vector, radius: number): Array<Enemy>
     {
         var enemiesInRadius: Array<Enemy> = [];
@@ -59,7 +68,8 @@ export class Field {
         this.objects.forEach(line =>
             line
                 .filter(x => x.reloadBar)
-                .forEach(x => ReloadBar.render(ctx, x as unknown as IReloader, this))
+                // @ts-ignore
+                .forEach((x) => ReloadBar.render(ctx, x, this))
         );
     }
 
