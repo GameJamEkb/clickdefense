@@ -1,13 +1,8 @@
-import {GameObject} from "./entities/base/GameObject";
-import {Cell} from "./entities/base/Cell";
-import {Vector} from "./entities/base/Vector";
-import {Field} from "./Field";
+import {IGameObject} from "../entities/interfaces/IGameObject";
+import {Cell} from "../entities/base/Cell";
+import {Vector} from "../entities/base/Vector";
 
-export function pifagor(x: number, y: number) {
-    return Math.sqrt(x * x + y * y);
-}
-
-function expand(nodes: Array<Array<GameObject>>, node: Cell): Array<Cell> {
+function expand(nodes: Array<Array<IGameObject>>, node: Cell): Array<Cell> {
     const dx = [1, 0, -1, 0];
     const dy = [0, -1, 0, 1];
     const cells: Array<Cell> = [];
@@ -38,7 +33,7 @@ function hashCell(cell: Cell): number {
 }
 
 
-export function bfs(nodes: Array<Array<GameObject>>, startNode: Cell, destNode: Cell): Array<Cell> {
+export function bfs(nodes: Array<Array<IGameObject>>, startNode: Cell, destNode: Cell): Array<Cell> {
     const visited: Map<number, boolean> = new Map();
     const parents: Map<number, Cell> = new Map();
     const points: Array<Cell> = [];
@@ -77,11 +72,3 @@ export function bfs(nodes: Array<Array<GameObject>>, startNode: Cell, destNode: 
     }
     return [];
 }
-
-export function cellByPostion(v: Vector, field: Field): Cell {
-    return new Vector(
-        Math.floor(v.x / field.cellSize),
-        Math.floor(v.y / field.cellSize)
-    )
-}
-

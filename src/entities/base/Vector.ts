@@ -1,4 +1,4 @@
-import {pifagor} from "../../utils";
+import {pifagor} from "../../utils/geometry";
 
 export class Vector {
     x : number;

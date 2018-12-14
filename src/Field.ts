@@ -1,14 +1,12 @@
-import {GameObject} from "./entities/base/GameObject";
+import {IGameObject} from "./entities/interfaces/IGameObject";
 import {Vector} from "./entities/base/Vector";
-import {Rock} from "./entities/Rock";
 import {Enemy} from "./entities/Enemy";
-import {cellByPostion} from "./utils";
-import {pifagor} from "./utils";
-import {EmptyCell} from "./entities/EmptyCell";
+import {getCellByPostion} from "./utils/positions";
 import {Cell} from "./entities/base/Cell";
+import {GameObjectFactory} from "./entities/factories/GameObjectFactory";
 
 export class Field {
-    objects: Array<Array<GameObject>>;
+    objects: Array<Array<IGameObject>>;
     goldPosition: Vector;
     width: number;
     height: number;
@@ -23,12 +21,12 @@ export class Field {
         this.goldPosition = new Cell(5,5);
         this.objects = Array.from({length: this.width})
             .map((_, x) => Array.from({length: this.height})
-                .map((_, y) => new EmptyCell(x, y, this)));
+                .map((_, y) => GameObjectFactory.createEmptyCell(x, y, this)));
         this.enemies = [];
     }
 
-    addObject(gameObject: GameObject) {
-        var cell = cellByPostion(gameObject.position, this);
+    addObject(gameObject: IGameObject) {
+        var cell = getCellByPostion(gameObject.position, this);
         this.objects[cell.x][cell.y] = gameObject;
     }
 

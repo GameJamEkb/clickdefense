@@ -1,13 +1,19 @@
-import {GameObject} from "./base/GameObject";
+import {IGameObject} from "./interfaces/IGameObject";
 import {Vector} from "./base/Vector";
-import {Ellipse} from "./base/Ellipse";
 import {Field} from "../Field";
+import {ICollider} from "./interfaces/ICollider";
 
-export class EmptyCell extends GameObject {
+export class EmptyCell implements IGameObject {
     private static BaseHp = 100;
 
-    constructor(x: number, y: number, field: Field) {
-        super(new Vector(x * field.cellSize , y * field.cellSize), EmptyCell.BaseHp, true, field, new Ellipse(5, 5));
+    hp: Number;
+
+    constructor(public collider: ICollider,
+                public field: Field,
+                public passability: boolean,
+                public position: Vector)
+    {
+        this.hp = EmptyCell.BaseHp;
     }
 
     onClick(): void {
@@ -23,4 +29,10 @@ export class EmptyCell extends GameObject {
 
     update(elapsed: number): void {
     }
+
+
+
+
+
+
 }

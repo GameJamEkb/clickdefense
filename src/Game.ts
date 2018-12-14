@@ -1,6 +1,5 @@
 import {Field} from "./Field";
 import {GameConfig} from "./constants/GameConfig";
-import {Rock} from "./entities/Rock";
 import {GameObjectFactory} from "./entities/factories/GameObjectFactory";
 
 export class Game {
@@ -12,7 +11,7 @@ export class Game {
 
 
         // Test Rocck TODO: Remove
-        this.field.addObject(new Rock(4 * this.field.cellSize, 6 * this.field.cellSize, this.field));
+        this.field.addObject(GameObjectFactory.createRock(4, 6, this.field));
 
         // Test Enemy TODO: Kill them all
         this.field.addEnemy(GameObjectFactory.createEnemy(30, 30, this.field));
