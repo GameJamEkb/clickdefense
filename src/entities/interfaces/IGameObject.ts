@@ -6,8 +6,8 @@ import {Circle} from "../base/Circle";
 export interface IGameObject {
     collider:ICollider;
     passability: boolean;
-    hp: Number;
-    maxHp: Number;
+    hp: number;
+    maxHp: number;
     position: Vector;
     field: Field;
 

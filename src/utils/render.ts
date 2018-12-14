@@ -16,6 +16,15 @@ export function drawRectangle(ctx: CanvasRenderingContext2D, x: number, y: numbe
     ctx.stroke();
 }
 
+export function fillRectangle(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, fillStyle?: string) {
+    ctx.beginPath();
+    if (fillStyle) {
+        ctx.fillStyle = fillStyle
+    }
+    ctx.fillRect(x, y, width, height);
+
+}
+
 export function drawTower(ctx: CanvasRenderingContext2D, x: number, y: number, r: number) {
     ctx.beginPath();
     ctx.arc(x, y, r, 0, 2 * Math.PI);
