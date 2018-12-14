@@ -15,12 +15,16 @@ document.body.appendChild(canvas);
 const game = new Game(0);
 
 
+let prevTime = Date.now();
 const loop = () => {
     // @ts-ignore
-    var elapsed = (new Date() - prevTime) / 1000;
+    ctx.clearRect(0, 0, 640, 480);
+    const currentTime = Date.now();
+    const elapsed = (currentTime - prevTime) / 1000;
+    prevTime = currentTime
     requestAnimationFrame(loop);
     game.render(ctx);
+    game.update(elapsed);
 };
 
-var prevTime = new Date();
 loop();
