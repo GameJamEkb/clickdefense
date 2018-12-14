@@ -1,5 +1,6 @@
 import './style.css';
 import {Game} from "./Game";
+import {GameObjectFactory} from "./entities/factories/GameObjectFactory";
 
 const canvas = document.createElement('canvas');
 
@@ -12,11 +13,13 @@ if (ctx == null) {
 }
 
 document.body.appendChild(canvas);
-const game = new Game(0);
 
-const sprite = new Image();
-sprite.src = '/public/images/sprites.png';
+const sprite = new Image(10,10);
+sprite.src = '/public/images/orc_sprite.png';
 sprite.onload = () => {
+    GameObjectFactory.sprite = sprite;
+
+    const game = new Game(0);
     let prevTime = Date.now();
     const loop = () => {
         // @ts-ignore

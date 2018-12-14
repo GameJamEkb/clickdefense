@@ -10,8 +10,8 @@ export class Enemy extends GameObject implements IMover {
     nextPoint: Vector = this.position;
     destination: Cell = this.position;
 
-    constructor(position: Vector, field: Field) {
-        super(position, 10, true, field, new Rectangle(10, 10));
+    constructor(position: Vector, hp: number, field: Field, public sprite: HTMLImageElement) {
+        super(position, hp, true, field, new Rectangle(10, 10));
 
         this.destination = field.goldPosition;
     }
@@ -42,13 +42,14 @@ export class Enemy extends GameObject implements IMover {
     }
 
     gotHit(powerHit: number): void {
-        this.hp =- powerHit
+        this.hp = -powerHit
     }
 
     render(ctx: CanvasRenderingContext2D): void {
         ctx.beginPath();
         ctx.fillStyle = 'red';
-        ctx.fillRect(this.position.x - 15, this.position.y - 15, 30 ,30);
+        ctx.fillRect(this.position.x - 15, this.position.y - 15, 30, 30);
+        ctx.drawImage(this.sprite, 0, 0, 10, 10, this.position.x - 16, this.position.y - 16, 32, 32);
         ctx.closePath();
     }
 
