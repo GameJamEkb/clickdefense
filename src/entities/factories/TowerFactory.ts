@@ -111,7 +111,7 @@ export class TowerFactory {
         return new PoisonTower(
             new Rectangle(32, 32, 0, 0),
             field,
-            true,
+            false,
             getPositionByCell(cell, field),
             100,
             100,
@@ -128,7 +128,7 @@ export class TowerFactory {
         return new SlowingTower(
             new Rectangle(32, 32, 0, 0),
             field,
-            true,
+            false,
             getPositionByCell(cell, field),
             100,
             100,
