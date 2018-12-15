@@ -15,7 +15,7 @@ export class BaseTower extends Tower implements IGameObject, IReloader {
                 this.startReload();
                 return true;
             }
-        };
+        }
         return false
     }
 

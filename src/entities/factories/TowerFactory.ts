@@ -34,7 +34,8 @@ export class TowerFactory {
             50,
             3 * 32 - 16,
             2,
-            true
+            true,
+            250
         )
     }
 
@@ -50,7 +51,8 @@ export class TowerFactory {
             200,
             1 * 32 - 16,
             5,
-            true
+            true,
+            100
         )
     }
 
@@ -66,7 +68,8 @@ export class TowerFactory {
             35,
             3 * 32 - 16,
             4,
-            true
+            true,
+            250
         )
     }
 
@@ -82,7 +85,8 @@ export class TowerFactory {
             5,
             2 * 32 - 16,
             0.5,
-            true
+            true,
+            250
         )
     }
 
@@ -98,11 +102,12 @@ export class TowerFactory {
             250,
             32,
             10,
-            true
+            true,
+            125
         )
     }
 
-    static createPoisonTowerTower(cell: Cell, field: Field): BaseTower {
+    static createPoisonTower(cell: Cell, field: Field): BaseTower {
         return new PoisonTower(
             new Rectangle(32, 32, 0, 0),
             field,
@@ -114,7 +119,8 @@ export class TowerFactory {
             3,
             2 * 32 - 16,
             3,
-            true
+            true,
+            250
         )
     }
 
@@ -127,18 +133,24 @@ export class TowerFactory {
             100,
             100,
             3,
-            0.3,
+            0.7,
             2 * 32 - 16,
             3,
-            true
+            true,
+            175
         )
     }
 
 
     static createTowerById(id: string, cell: Cell, field: Field): BaseTower {
         switch (id) {
-            case 'Splash': return this.createSplashTower(cell, field);
-            case 'Trap': return this.createTrapTower(cell, field);
+            case 'Base': return this.createBaseTower(cell, field);
+            case 'FastSplashTower': return this.createFastSplashTower(cell, field);
+            case 'MineTower': return this.createMineTower(cell, field);
+            case 'PoisonTower': return this.createPoisonTower(cell, field);
+            case 'SlowingTower': return this.createSlowingTower(cell, field);
+            case 'SplashTower': return this.createSplashTower(cell, field);
+            case 'TrapTower': return this.createTrapTower(cell, field);
             default: return this.createBaseTower(cell, field);
         }
     }
