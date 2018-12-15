@@ -81,11 +81,16 @@ export class Game {
     }
 
     mouseClick(x:number, y:number){
+        let clickHandle = false;
         this.field.enemies.forEach( enemy =>{
                 if (enemy.collider.isInside(enemy.position, new Vector(x-GameConfig.GameFieldTranslateX,y-GameConfig.GameFieldTranslateY))){
                     enemy.onClick();
+                    clickHandle = true;
                 };
             });
+
+        if (clickHandle) return;
+
         this.field.objects.forEach( line =>{
             line.forEach( object =>{
                 if (object.collider.isInside(object.position, new Vector(x-GameConfig.GameFieldTranslateX,y-GameConfig.GameFieldTranslateY))){
@@ -94,7 +99,7 @@ export class Game {
             });
         });
 
-        const cell = getCellByPostion(new Vector(x, y), this.field);
+        const cell = getCellByPostion(new Vector(x-GameConfig.GameFieldTranslateX,y-GameConfig.GameFieldTranslateY), this.field);
         const obj = this.field.objects[cell.x][cell.y];
         if (obj instanceof EmptyCell && this.selectedTower) {
             this.field.addObject(TowerFactory.createTowerById(this.selectedTower, cell, this.field));
