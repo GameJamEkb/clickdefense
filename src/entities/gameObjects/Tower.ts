@@ -19,7 +19,8 @@ export abstract class Tower implements IGameObject, IReloader {
                 public attackPower: number,
                 public weaponRadius: number,
                 public reloadTime: number,
-                public reloadBar: boolean)
+                public reloadBar: boolean,
+                public cost: number)
     { }
 
     abstract tryAttack(): boolean;

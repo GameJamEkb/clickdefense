@@ -20,9 +20,15 @@ export class TowerSelector {
 
         this.towers = [
             new Tower('pink', 'Base'),
-            new Tower('green', 'Splash'),
-            new Tower('brown', 'Trap')
+            new Tower('#5C002F', 'FastSplashTower'),
+            new Tower('red', 'MineTower'),
+            new Tower('greenyellow', 'PoisonTower'),
+            new Tower('blue', 'SlowingTower'),
+            new Tower('orange', 'SplashTower'),
+            new Tower('gray', 'TrapTower'),
+            new Tower('black', ''),
         ];
+
 
         this.towers.forEach((tower) => {
             const selector = document.createElement('div');

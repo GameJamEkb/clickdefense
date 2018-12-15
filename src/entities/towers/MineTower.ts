@@ -9,12 +9,12 @@ export class MineTower extends Tower implements IGameObject, IReloader {
 
     tryAttack(): boolean {
         if (this.isRealoded() && this.hp > 0) {
-            var enemies = this.field.getEnemiesFromRadius(this.position, this.weaponRadius)
+            var enemies = this.field.getEnemiesFromRadius(this.position, this.weaponRadius);
             if (enemies.length) {
-                enemies.forEach(
+                enemies.slice(10).forEach(
                     enemy => enemy.gotHit(this.attackPower)
                 );
-                this.hp--
+                this.hp--;
                 this.startReload();
                 return true;
             }
@@ -26,7 +26,7 @@ export class MineTower extends Tower implements IGameObject, IReloader {
         ctx.drawImage(GameConfig.sprite, 32 * 2, 64 * 2, 32, 32, this.position.x - 16, this.position.y - 16, 32, 32)
 
         // fillCircle(ctx, this.position.x, this.position.y, 10, "brown");
-        fillRectangle(ctx, this.position.x, this.position.y, 15, 15, "brown")
+        fillRectangle(ctx, this.position.x, this.position.y, 15, 15, "red")
     }
 
 

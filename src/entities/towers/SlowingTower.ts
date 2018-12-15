@@ -11,7 +11,7 @@ export class SlowingTower extends Tower implements IGameObject, IReloader {
         if (this.isRealoded()) {
             var enemies = this.field.getEnemiesFromRadius(this.position, this.weaponRadius)
             if (enemies.length) {
-                enemies[0].gotHit(this.attackPower);
+                enemies[0].speed *= this.attackPower;
                 this.startReload();
                 return true;
             }
@@ -21,7 +21,7 @@ export class SlowingTower extends Tower implements IGameObject, IReloader {
 
     render(ctx: CanvasRenderingContext2D): void {
         ctx.drawImage(GameConfig.sprite, 32 * 2, 64 * 2, 32, 32, this.position.x - 16, this.position.y - 16, 32, 32)
-        fillCircle(ctx, this.position.x, this.position.y, 15, "pink");
+        fillCircle(ctx, this.position.x, this.position.y, 15, "blue");
     }
 
     onOver(): void {

@@ -16,6 +16,7 @@ export class Enemy implements IGameObject, IMover {
     nextPoint: Vector = this.position;
     private point?: Vector;
     finished: boolean = false;
+    poison: number = 0;
 
     constructor(public collider: ICollider,
                 public field: Field,
@@ -79,7 +80,12 @@ export class Enemy implements IGameObject, IMover {
 
     }
 
+    addPoison(poison: number): void {
+        this.poison += poison;
+    }
+
     update(elapsed: number): void {
+        this.hp -= this.poison * elapsed;
         if (this.hp <= 0){
             this.field.killEnemy()
         }

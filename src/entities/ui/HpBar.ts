@@ -18,7 +18,7 @@ export class HpBar {
             enemy.position.y + 8,
             HpBar.Width * life,
             HpBar.Height,
-            enemy instanceof Enemy && enemy.runAway ? "gold" : "red");
+            enemy instanceof Enemy && enemy.poison > 0 ? "green" : enemy instanceof Enemy && enemy.runAway ? "gold" : "red");
 
         fillRectangle(
             ctx,
