@@ -4,6 +4,7 @@ export class GameConfig {
     static CellSize: number = 32;
 
     static StartGold: number = 200;
+    static GoldByClick: number = 1;
 
     static GameFieldTranslateX: number = 10;
     static GameFieldTranslateY: number = 10;
