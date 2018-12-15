@@ -79,7 +79,7 @@ export class Game {
     };
 
     onLose() {
-        //TODO: End level and restart
+        this.field.objects.length = 0;
     }
 
     mouseClick(x:number, y:number){

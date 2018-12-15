@@ -11,7 +11,7 @@ export class SplashTower extends Tower implements IGameObject, IReloader {
         if (this.isRealoded()) {
             var enemies = this.field.getEnemiesFromRadius(this.position, this.weaponRadius);
             if (enemies.length) {
-                enemies.slice(5).forEach(
+                enemies.slice(0, 5).forEach(
                     enemy => enemy.gotHit(this.attackPower)
                 );
                 this.startReload();

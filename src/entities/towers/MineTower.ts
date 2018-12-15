@@ -11,7 +11,7 @@ export class MineTower extends Tower implements IGameObject, IReloader {
         if (this.isRealoded() && this.hp > 0) {
             var enemies = this.field.getEnemiesFromRadius(this.position, this.weaponRadius);
             if (enemies.length) {
-                enemies.slice(10).forEach(
+                enemies.slice(0, 10).forEach(
                     enemy => enemy.gotHit(this.attackPower)
                 );
                 this.hp--;

@@ -31,7 +31,7 @@ export class Gold implements IGameObject {
     }
 
     onClick(): void {
-        this.player.gold += 1;
+        this.player.gold += 100;
     }
     onOver(): void {
     }

@@ -96,7 +96,7 @@ export class Enemy implements IGameObject, IMover {
                 this.finished = true;
                 this.field.killEnemy();
             } else {
-                this.goldCount += this.field.stealGold(this.hp + this.goldCount);
+                this.goldCount += this.field.stealGold(this.hp / 10);
                 this.runAway = true;
                 this.destination = this.startPosition;
             }

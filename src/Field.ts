@@ -101,6 +101,7 @@ export class Field {
 
     stealGold(goldPower: number) {
         this.player.gold -= goldPower;
+        this.player.score -= goldPower * 2;
         return goldPower;
     }
 

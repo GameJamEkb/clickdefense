@@ -32,7 +32,7 @@ export class Player extends EventEmitter {
 
     set gold(value: number) {
         this.emit('goldChange', value);
-        if (value <= 0) {
+        if (value < 0) {
             this.onDie();
         }
         let delta = Math.max(0, value - this._gold);

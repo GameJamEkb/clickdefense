@@ -11,7 +11,7 @@ export class FastSplashTower extends Tower implements IGameObject, IReloader {
         if (this.isRealoded()) {
             var enemies = this.field.getEnemiesFromRadius(this.position, this.weaponRadius);
             if (enemies.length) {
-                enemies.slice(3).forEach(
+                enemies.slice(0, 3).forEach(
                     enemy => enemy.gotHit(this.attackPower)
                 );
                 this.startReload();
