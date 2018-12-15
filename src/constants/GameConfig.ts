@@ -3,7 +3,7 @@ export class GameConfig {
     static HeightInCells: number = 15;
     static CellSize: number = 32;
 
-    static StartGold: number = 100;
+    static StartGold: number = 500;
 
     static GameFieldTranslateX: number = 10;
     static GameFieldTranslateY: number = 10;

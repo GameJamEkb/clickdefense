@@ -151,7 +151,7 @@ export class TowerFactory {
             case 'SlowingTower': return this.createSlowingTower(cell, field);
             case 'SplashTower': return this.createSplashTower(cell, field);
             case 'TrapTower': return this.createTrapTower(cell, field);
-            default: return this.createBaseTower(cell, field);
+            default: ;
         }
     }
 }

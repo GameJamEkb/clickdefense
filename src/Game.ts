@@ -10,6 +10,8 @@ import {getCellByPostion} from "./utils/positions";
 import {BaseTower} from "./entities/towers/BaseTower";
 import {EmptyCell} from "./entities/gameObjects/EmptyCell";
 import {EnemiesEnum} from "./entities/gameObjects/Spawner";
+import {Tower} from "./entities/gameObjects/Tower";
+import {Rock} from "./entities/gameObjects/Rock";
 
 export class Game {
     field: Field;
@@ -83,7 +85,7 @@ export class Game {
     mouseClick(x:number, y:number){
         let clickHandle = false;
         this.field.enemies.forEach( enemy =>{
-                if (enemy.collider.isInside(enemy.position, new Vector(x-GameConfig.GameFieldTranslateX,y-GameConfig.GameFieldTranslateY))){
+                if (enemy.collider.isInside(enemy.position, new Vector(x,y))){
                     enemy.onClick();
                     clickHandle = true;
                 };
@@ -93,16 +95,18 @@ export class Game {
 
         this.field.objects.forEach( line =>{
             line.forEach( object =>{
-                if (object.collider.isInside(object.position, new Vector(x-GameConfig.GameFieldTranslateX,y-GameConfig.GameFieldTranslateY))){
+                if (object.collider.isInside(object.position, new Vector(x,y))){
                     object.onClick();
                 };
             });
         });
 
-        const cell = getCellByPostion(new Vector(x-GameConfig.GameFieldTranslateX,y-GameConfig.GameFieldTranslateY), this.field);
+        const cell = getCellByPostion(new Vector(x,y), this.field);
         const obj = this.field.objects[cell.x][cell.y];
-        if (obj instanceof EmptyCell && this.selectedTower) {
-            this.field.addObject(TowerFactory.createTowerById(this.selectedTower, cell, this.field));
+        const tower = TowerFactory.createTowerById(this.selectedTower, cell, this.field) as Tower;
+        if ((obj instanceof EmptyCell || obj instanceof Rock) && this.selectedTower && tower.cost <= this.player.gold) {
+            this.player.gold -= tower.cost;
+            this.field.addObject(tower);
         }
     }
     mouseOver(x:number, y:number){

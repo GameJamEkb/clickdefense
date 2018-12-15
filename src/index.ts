@@ -1,6 +1,5 @@
 import './style.css';
 import {Game} from "./Game";
-import {TowerFactory} from "./entities/factories/TowerFactory";
 import {GameConfig} from "./constants/GameConfig";
 import {GameUI} from "./ui/GameUI";
 
@@ -9,7 +8,6 @@ const canvas = document.createElement('canvas');
 canvas.width = GameConfig.CanvasWidth;
 canvas.height = GameConfig.CanvasHeight;
 canvas.classList.add('game-display');
-
 
 
 const ctx = canvas.getContext('2d');
@@ -32,7 +30,6 @@ sprite.onload = () => {
     document.body.appendChild(uiContainer);
 
 
-
     const gameUI = new GameUI(uiContainer);
     gameUI.on('towerChange', (id: string) => {
         game.selectedTower = id
@@ -41,13 +38,13 @@ sprite.onload = () => {
     game.player.on('goldChange', gameUI.onGoldChange.bind(gameUI));
 
 
+    canvas.addEventListener('mousedown', function (event) {
+        var x = event.pageX - canvas.offsetLeft - GameConfig.GameFieldTranslateX,
+            y = event.pageY - canvas.offsetTop -  GameConfig.GameFieldTranslateY;
 
-    canvas.addEventListener('mousedown', function(event) {
-        var x = event.pageX - canvas.offsetLeft ,
-            y = event.pageY - canvas.offsetTop;
         game.mouseClick(x, y);
     }, false);
-    canvas.addEventListener('mouseover', function(event) {
+    canvas.addEventListener('mouseover', function (event) {
         var x = event.pageX - canvas.offsetLeft,
             y = event.pageY - canvas.offsetTop;
         game.mouseOver(x, y);
