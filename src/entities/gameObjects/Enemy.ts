@@ -57,7 +57,7 @@ export class Enemy implements IGameObject, IMover {
     }
 
     onClick(): void {
-        this.gotHit(25);
+        this.gotHit(50);
         console.log("AAaaaa")
     }
 
