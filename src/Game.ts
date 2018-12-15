@@ -96,7 +96,7 @@ export class Game {
 
         const cell = getCellByPostion(new Vector(x, y), this.field);
         const obj = this.field.objects[cell.x][cell.y];
-        if (obj instanceof EmptyCell) {
+        if (obj instanceof EmptyCell && this.selectedTower) {
             this.field.addObject(TowerFactory.createTowerById(this.selectedTower, cell, this.field));
         }
     }
