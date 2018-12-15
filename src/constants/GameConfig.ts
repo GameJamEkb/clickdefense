@@ -14,7 +14,7 @@ export class GameConfig {
     static ShowEnemiesColliders: boolean = false;
     static ShowTowersColliders: boolean = true;
 
-    static ShowEnemiesHitBars: boolean = false;
+    static ShowEnemiesHitBars: boolean = true;
     static ShowTowersReloadBars: boolean = true;
 
     static sprite: HTMLImageElement;
