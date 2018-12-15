@@ -17,6 +17,7 @@ import {Circle} from "../base/Circle";
 import {Gold} from "../gameObjects/Gold";
 import {GameConfig} from "../../constants/GameConfig";
 import {SmartSpawner} from "../gameObjects/SmartSpawner";
+import {Player} from "../../Player";
 
 export class GameObjectsFactory {
     static createRock(cell: Cell, field: Field) {
@@ -32,7 +33,7 @@ export class GameObjectsFactory {
         )
     }
 
-    static createGold(cell: Cell, field: Field) {
+    static createGold(cell: Cell, field: Field, player: Player) {
         return new Gold(
             new Circle(16, 0, 0),
             field,
@@ -40,7 +41,8 @@ export class GameObjectsFactory {
             getPositionByCell(cell, field),
             100,
             100,
-            false
+            false,
+            player
         )
     }
 

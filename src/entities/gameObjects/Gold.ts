@@ -5,6 +5,7 @@ import {ICollider} from "../interfaces/ICollider";
 import {fillCircle} from "../../utils/render";
 import {randomInt} from "../../utils/nums";
 import {GameConfig} from "../../constants/GameConfig";
+import {Player} from "../../Player";
 
 export class Gold implements IGameObject {
     deltas: Array<Vector> = []
@@ -15,7 +16,8 @@ export class Gold implements IGameObject {
                 public position: Vector,
                 public hp: number,
                 public maxHp: number,
-                public reloadBar: boolean)
+                public reloadBar: boolean,
+                public player: Player)
     {
         for (let line = 0; line < 8; line++) {
             for (let m = line; m < 8; m++) {
@@ -29,6 +31,7 @@ export class Gold implements IGameObject {
     }
 
     onClick(): void {
+        this.player.gold += 1;
     }
     onOver(): void {
     }

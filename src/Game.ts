@@ -70,7 +70,7 @@ export class Game {
                 } else if (line.charAt(j) == "L") {
                     this.field.addObject(TowerFactory.createTrapTower(cell, this.field));
                 } else if (line.charAt(j) == "G") {
-                    this.field.addObject(GameObjectsFactory.createGold(cell, this.field));
+                    this.field.addObject(GameObjectsFactory.createGold(cell, this.field, this.player));
                     this.field.goldPosition = cell;
                 }
             }
