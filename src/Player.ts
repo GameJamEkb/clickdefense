@@ -35,7 +35,10 @@ export class Player extends EventEmitter {
         if (value <= 0) {
             this.onDie();
         }
-        this.score += Math.max(0, value - this._gold);
+        let delta = Math.max(0, value - this._gold);
+        if (delta > 1) {
+            this.score += Math.max(0, value - this._gold);
+        }
         this._gold = value;
         console.log(this.score);
     }
