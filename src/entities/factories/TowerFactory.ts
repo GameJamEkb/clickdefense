@@ -31,7 +31,7 @@ export class TowerFactory {
             100,
             100,
             2,
-            50,
+            40,
             3 * 32 - 16,
             2,
             true,

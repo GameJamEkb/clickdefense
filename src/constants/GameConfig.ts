@@ -22,4 +22,6 @@ export class GameConfig {
 
     static PathFinderPixelDelta: number = 2;
 
+    static EasyCoeff = 0;
+
 }
