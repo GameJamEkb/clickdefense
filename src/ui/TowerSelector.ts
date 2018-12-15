@@ -27,7 +27,7 @@ export class TowerSelector {
         this.towers.forEach((tower) => {
             const selector = document.createElement('div');
             selector.classList.add('tower-selector');
-            selector.style.background = tower.icon;
+            selector.style.backgroundColor = tower.icon;
 
 
             selector.onclick = () => {
