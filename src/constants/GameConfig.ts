@@ -18,10 +18,12 @@ export class GameConfig {
     static ShowEnemiesHitBars: boolean = true;
     static ShowTowersReloadBars: boolean = true;
 
+    // Бандл
     static sprite: HTMLImageElement;
 
     static PathFinderPixelDelta: number = 2;
 
+    // Понижение сложности при краже золота. 0 - без понижения. 1 - сложность вернётся при убийстве вора. 1+ - сложность понизится.
     static EasyCoeff = 0;
 
 }

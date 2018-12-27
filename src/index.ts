@@ -4,6 +4,8 @@ import {GameConfig} from "./constants/GameConfig";
 import {GameUI} from "./ui/GameUI";
 
 const canvas = document.createElement('canvas');
+document.body.style.backgroundColor = "#303030";
+
 
 canvas.width = GameConfig.CanvasWidth;
 canvas.height = GameConfig.CanvasHeight;

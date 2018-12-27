@@ -14,10 +14,12 @@ import {Rectangle} from "./entities/base/Rectangle";
 import {Tower} from "./entities/gameObjects/Tower";
 import {Player} from "./Player";
 import {GameObjectsFactory} from "./entities/factories/GameObjectsFactory";
+import {Spawner} from "./entities/gameObjects/Spawner";
+import {SmartSpawner} from "./entities/gameObjects/SmartSpawner";
+import {Gold} from "./entities/gameObjects/Gold";
 
 export class Field {
     objects: Array<Array<IGameObject>>;
-    goldPosition: Vector = new Vector(0, 0);
     enemies: Array<Enemy>;
 
     constructor(public width: number,
@@ -97,6 +99,26 @@ export class Field {
             );
         }
 
+    }
+
+    goldPosition(): Vector {
+        for (let line of this.objects) {
+            for (let obj of line) {
+                if (obj instanceof Gold) {
+                    return getCellByPostion(obj.position, this);
+                }
+            }
+        }
+        throw new Error("No gold on map");
+    }
+
+
+    getSpawns(): Array<Cell> {
+        let ans: Array<Cell> = [];
+        this.objects.forEach( line =>
+            line.forEach(e => e instanceof Spawner || e instanceof SmartSpawner ? ans.push(getCellByPostion(e.position, this)) : null)
+        );
+        return ans;
     }
 
     stealGold(goldPower: number) {

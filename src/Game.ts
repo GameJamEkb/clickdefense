@@ -12,12 +12,13 @@ import {EmptyCell} from "./entities/gameObjects/EmptyCell";
 import {EnemiesEnum} from "./entities/gameObjects/Spawner";
 import {Tower} from "./entities/gameObjects/Tower";
 import {Rock} from "./entities/gameObjects/Rock";
+import {bfs} from "./utils/bfs";
 
 export class Game {
     field: Field;
     player: Player;
 
-    selectedTower = 'BaseTower';
+    selectedTower = '';
 
     constructor(levelNumber: number) {
         this.player = new Player(
@@ -43,6 +44,8 @@ export class Game {
     update(elapsed: number): void {
         this.field.update(elapsed);
     }
+
+
 
     loadLevel(): void {
         var split_level = level.split("\n");
@@ -71,7 +74,6 @@ export class Game {
                     this.field.addObject(TowerFactory.createTrapTower(cell, this.field));
                 } else if (line.charAt(j) == "G") {
                     this.field.addObject(GameObjectsFactory.createGold(cell, this.field, this.player));
-                    this.field.goldPosition = cell;
                 }
             }
         });
@@ -105,9 +107,22 @@ export class Game {
         const obj = this.field.objects[cell.x][cell.y];
         const tower = TowerFactory.createTowerById(this.selectedTower, cell, this.field) as Tower;
         if ((obj instanceof EmptyCell || obj instanceof Rock) && this.selectedTower && tower.cost <= this.player.gold) {
-            this.player.gold -= tower.cost;
             this.field.addObject(tower);
+            let blocked = false;
+            for (let cell of this.field.getSpawns()) {
+                let way = bfs(this.field.objects, cell, getCellByPostion(this.field.goldPosition(), this.field));
+                if (!way.length) {
+                    blocked = true
+                }
+            }
+
+            if (blocked) {
+                this.field.addObject(obj);
+            } else {
+                this.player.gold -= tower.cost;
+            }
         }
+        console.log(this.selectedTower);
     }
     mouseOver(x:number, y:number){
         this.field.objects.forEach( line =>{
