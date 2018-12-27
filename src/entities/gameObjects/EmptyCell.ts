@@ -33,9 +33,27 @@ export class EmptyCell implements IGameObject {
     }
 
     render(ctx: CanvasRenderingContext2D): void {
-        ctx.drawImage(this.sprite, 32 * 2, 64 * 2, 32, 32, this.position.x - 16, this.position.y - 16, 32, 32)
+        ctx.drawImage(
+            this.sprite,
+            32 * 2,
+            64 * 2,
+            32,
+            32,
+            this.position.x - 16,
+            this.position.y - 16,
+            32,
+            32);
         if (this.hasScull) {
-            ctx.drawImage(this.sprite, 448, 448, 32, 32, this.position.x - 16, this.position.y - 16, 32, 32)
+            ctx.drawImage(
+                this.sprite,
+                448,
+                448,
+                32,
+                32,
+                this.position.x - 16,
+                this.position.y - 16,
+                32,
+                32)
         }
 
     }

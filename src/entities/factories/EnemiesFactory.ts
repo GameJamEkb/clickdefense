@@ -1,21 +1,9 @@
-import {EmptyCell} from "../gameObjects/EmptyCell";
 import {Rectangle} from "../base/Rectangle";
-import {Cell} from "../base/Cell";
 import {getCellByPostion, getPositionByCell} from "../../utils/positions";
 import {Field} from "../../Field";
-import {Rock} from "../gameObjects/Rock";
 import {Enemy} from "../gameObjects/Enemy";
 import {Vector} from "../base/Vector";
-import {BaseTower} from "../towers/BaseTower";
-import Base = Mocha.reporters.Base;
-import {Spawner} from "../gameObjects/Spawner";
-import {SplashTower} from "../towers/SplashTower";
-import {TrapTower} from "../towers/TrapTower";
-import {Animation} from "../../Animation";
-import {randomInt} from "../../utils/nums";
-import {Circle} from "../base/Circle";
-import {Gold} from "../gameObjects/Gold";
-import {GameConfig} from "../../constants/GameConfig";
+import {AnimationsFactory} from "./AnimationsFactory";
 
 export class EnemiesFactory {
     static createOrk(vector: Vector, field: Field): Enemy {
@@ -26,9 +14,8 @@ export class EnemiesFactory {
             vector,
             100,
             100,
-            GameConfig.sprite,
             false,
-            new Animation(368 * 2, 204 * 2, 32, 0, 0.2, 4, randomInt(0, 4)),
+            AnimationsFactory.createOrkAnimation(),
             field.goldPosition(),
             10,
             false,
@@ -46,9 +33,8 @@ export class EnemiesFactory {
             vector,
             50,
             50,
-            GameConfig.sprite,
             false,
-            new Animation(432 * 2, 80 * 2, 32, 0, 0.2, 3, randomInt(0, 4)),
+            AnimationsFactory.createSkeletAnimation(),
             field.goldPosition(),
             5,
             false,
@@ -66,9 +52,8 @@ export class EnemiesFactory {
             vector,
             250,
             250,
-            GameConfig.sprite,
             false,
-            new Animation(432 * 2, 112 * 2, 32, 0, 0.2, 3, randomInt(0, 4)),
+            AnimationsFactory.createSlimeAnimation(),
             field.goldPosition(),
             20,
             false,
@@ -86,9 +71,8 @@ export class EnemiesFactory {
             vector,
             40,
             40,
-            GameConfig.sprite,
             false,
-            new Animation(432 * 2, 144 * 2, 32, 0, 0.2, 3, randomInt(0, 4)),
+            AnimationsFactory.createBlueStickAnimation(),
             field.goldPosition(),
             7,
             false,

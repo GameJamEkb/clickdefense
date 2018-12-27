@@ -8,6 +8,7 @@ export class Animation {
     constructor(
         public x: number,
         public y: number,
+        public sprite: HTMLImageElement,
 
         public dx: number,
         public dy: number,

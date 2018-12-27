@@ -24,7 +24,6 @@ export class Enemy implements IGameObject, IMover {
                 public position: Vector,
                 public hp: number,
                 public maxHp: number,
-                public sprite: HTMLImageElement,
                 public reloadBar: boolean,
                 public animation: Animation,
                 public destination: Cell,
@@ -72,7 +71,7 @@ export class Enemy implements IGameObject, IMover {
     render(ctx: CanvasRenderingContext2D): void {
         ctx.beginPath();
         const frame = this.animation.frame;
-        ctx.drawImage(this.sprite, frame.x, frame.y, 32, 40, this.position.x - 18, this.position.y - 35, 32, 40);
+        ctx.drawImage(this.animation.sprite, frame.x, frame.y, 32, 40, this.position.x - 18, this.position.y - 35, 32, 40);
         if (GameConfig.ShowEnemiesColliders) {
             drawRectangleCollider(ctx, this.position, this.collider as Rectangle);
         }
