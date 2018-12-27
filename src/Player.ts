@@ -47,7 +47,7 @@ export class Player extends EventEmitter {
         this.game.onLose();
     }
 
-    onLevelStart(field: Field) {
+    onLevelStart() {
 
     }
 

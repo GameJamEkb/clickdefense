@@ -21,7 +21,15 @@ import {MineTower} from "../towers/MineTower";
 import {PoisonTower} from "../towers/PoisonTower";
 import {SlowingTower} from "../towers/SlowingTower";
 
+
+
+
 export class TowerFactory {
+
+    static getRadiusByCellsCount(count: number): number {
+        return count * GameConfig.CellSize - GameConfig.CellSize / 2;
+    }
+
     static createBaseTower(cell: Cell, field: Field): BaseTower {
         return new BaseTower(
             new Rectangle(32, 32, 0, 0),
@@ -32,7 +40,7 @@ export class TowerFactory {
             100,
             2,
             40,
-            3 * 32 - 16,
+            TowerFactory.getRadiusByCellsCount(3),
             2,
             true,
             250
@@ -49,7 +57,7 @@ export class TowerFactory {
             5,
             5,
             200,
-            1 * 32 - 16,
+            TowerFactory.getRadiusByCellsCount(1),
             5,
             true,
             100
@@ -66,7 +74,7 @@ export class TowerFactory {
             100,
             4,
             35,
-            3 * 32 - 16,
+            TowerFactory.getRadiusByCellsCount(3),
             4,
             true,
             250
@@ -83,7 +91,7 @@ export class TowerFactory {
             100,
             0.5,
             5,
-            2 * 32 - 16,
+            TowerFactory.getRadiusByCellsCount(2),
             0.5,
             true,
             250
@@ -100,7 +108,7 @@ export class TowerFactory {
             3,
             3,
             250,
-            32,
+            TowerFactory.getRadiusByCellsCount(1.5),
             10,
             true,
             125
@@ -117,7 +125,7 @@ export class TowerFactory {
             100,
             3,
             3,
-            2 * 32 - 16,
+            TowerFactory.getRadiusByCellsCount(2),
             3,
             true,
             250
@@ -134,7 +142,7 @@ export class TowerFactory {
             100,
             3,
             0.7,
-            2 * 32 - 16,
+            TowerFactory.getRadiusByCellsCount(2),
             3,
             true,
             175
